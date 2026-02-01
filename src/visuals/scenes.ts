@@ -33,65 +33,65 @@ const lightPresets: Record<WorldName, WorldPreset> = {
   space: {
     label: 'Space',
     background: {
-      top: '#F6FAF8',
-      bottom: '#DCE7E6'
+      top: '#0A0F18',
+      bottom: '#0C1320'
     },
     particle: {
-      color: '#1F5F3A',
+      color: '#CFE6FF',
       alpha: 0.55,
-      size: [0.6, 1.8],
-      speed: { x: 1.6, y: 1.1 },
-      wobble: 0.4,
-      twinkle: 1.8,
+      size: [0.6, 2.2],
+      speed: { x: 1.2, y: 0.8 },
+      wobble: 0.5,
+      twinkle: 2,
       mode: 0
     },
     nebula: {
-      core: '#E6F5F1',
-      outer: '#D2E4E2'
+      core: '#1C2940',
+      outer: '#10192C'
     },
-    accent: '#B8DCD0'
+    accent: '#7BC8FF'
   },
   ocean: {
     label: 'Ocean',
     background: {
-      top: '#F1F8F4',
-      bottom: '#D5E7DF'
+      top: '#0A101C',
+      bottom: '#0A1524'
     },
     particle: {
-      color: '#2E7355',
-      alpha: 0.4,
-      size: [1.1, 3.4],
-      speed: { x: 0.5, y: -5.5 },
-      wobble: 1.4,
-      twinkle: 0.4,
+      color: '#AEE2FF',
+      alpha: 0.42,
+      size: [0.8, 2.6],
+      speed: { x: 0.6, y: -3.8 },
+      wobble: 1.1,
+      twinkle: 0.6,
       mode: 1
     },
     nebula: {
-      core: '#E2F2EA',
-      outer: '#CFE3DA'
+      core: '#1C3046',
+      outer: '#0E1B2F'
     },
-    accent: '#AFCFC1'
+    accent: '#7FB2FF'
   },
   desert: {
     label: 'Desert',
     background: {
-      top: '#FAF4EA',
-      bottom: '#EADCC8'
+      top: '#0C1322',
+      bottom: '#0B1222'
     },
     particle: {
-      color: '#7B5C3A',
-      alpha: 0.34,
-      size: [0.5, 1.4],
-      speed: { x: 5.6, y: 0.4 },
-      wobble: 0.9,
-      twinkle: 0.2,
+      color: '#BFD7FF',
+      alpha: 0.38,
+      size: [0.6, 2],
+      speed: { x: 2.6, y: 0.3 },
+      wobble: 0.7,
+      twinkle: 0.4,
       mode: 2
     },
     nebula: {
-      core: '#F3E8D4',
-      outer: '#E4D1BE'
+      core: '#1A243B',
+      outer: '#0D162A'
     },
-    accent: '#C8B199'
+    accent: '#7EA8FF'
   }
 };
 
@@ -99,65 +99,65 @@ const darkPresets: Record<WorldName, WorldPreset> = {
   space: {
     label: 'Space',
     background: {
-      top: '#07120E',
-      bottom: '#0C1B16'
+      top: '#050913',
+      bottom: '#070C19'
     },
     particle: {
-      color: '#FAFAF7',
+      color: '#E6F0FF',
       alpha: 0.55,
-      size: [0.7, 2],
-      speed: { x: 1.2, y: 0.8 },
-      wobble: 0.3,
-      twinkle: 1.7,
+      size: [0.7, 2.4],
+      speed: { x: 1.1, y: 0.7 },
+      wobble: 0.4,
+      twinkle: 2,
       mode: 0
     },
     nebula: {
-      core: '#1B3A2E',
-      outer: '#11241B'
+      core: '#121E3A',
+      outer: '#0A1226'
     },
-    accent: '#86B09A'
+    accent: '#7DCBFF'
   },
   ocean: {
     label: 'Ocean',
     background: {
-      top: '#0E241A',
-      bottom: '#0A1A14'
+      top: '#050A16',
+      bottom: '#081021'
     },
     particle: {
-      color: '#CFE8DD',
-      alpha: 0.4,
-      size: [1.2, 3.4],
-      speed: { x: 0.4, y: -4.8 },
-      wobble: 1.1,
-      twinkle: 0.3,
+      color: '#B5D7FF',
+      alpha: 0.42,
+      size: [0.9, 2.6],
+      speed: { x: 0.5, y: -3.4 },
+      wobble: 1,
+      twinkle: 0.5,
       mode: 1
     },
     nebula: {
-      core: '#1B352A',
-      outer: '#0D1F17'
+      core: '#121F36',
+      outer: '#0A1327'
     },
-    accent: '#77A28D'
+    accent: '#7FB2FF'
   },
   desert: {
     label: 'Desert',
     background: {
-      top: '#142B20',
-      bottom: '#0E2018'
+      top: '#060B18',
+      bottom: '#08101D'
     },
     particle: {
-      color: '#EADCC6',
-      alpha: 0.35,
-      size: [0.6, 1.6],
-      speed: { x: 4.6, y: 0.3 },
-      wobble: 0.8,
-      twinkle: 0.2,
+      color: '#C7DAFF',
+      alpha: 0.4,
+      size: [0.7, 2.2],
+      speed: { x: 2.1, y: 0.3 },
+      wobble: 0.7,
+      twinkle: 0.4,
       mode: 2
     },
     nebula: {
-      core: '#26372A',
-      outer: '#18261D'
+      core: '#111C34',
+      outer: '#0A1226'
     },
-    accent: '#B4A48E'
+    accent: '#7EA8FF'
   }
 };
 

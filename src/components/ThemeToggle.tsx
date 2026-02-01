@@ -6,7 +6,7 @@ interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ theme, onToggle }: ThemeToggleProps) {
-  const label = theme === 'light' ? 'White Cosmos' : 'Dark Space';
+  const label = theme === 'light' ? 'Cosmic Light' : 'Deep Space';
 
   return (
     <button
