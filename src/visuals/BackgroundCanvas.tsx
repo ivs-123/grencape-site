@@ -29,6 +29,7 @@ interface SceneState {
 
 const TARGET_FPS = 30;
 const TRANSITION_SECONDS = 12;
+const ARM_COUNT = 3;
 
 function hexToRgb(hex: string): [number, number, number] {
   const clean = hex.replace('#', '');
@@ -198,6 +199,8 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
       const nebulaOuter = `rgb(${state.nebulaOuter[0]}, ${state.nebulaOuter[1]}, ${state.nebulaOuter[2]})`;
       const accent = `rgb(${state.accent[0]}, ${state.accent[1]}, ${state.accent[2]})`;
       const wisps = wispsRef.current;
+      const centerX = width * 0.5;
+      const centerY = height * 0.45;
       ctx.save();
       ctx.globalAlpha = reducedMotion ? 0.12 : 0.2;
       ctx.globalCompositeOperation = 'screen';
@@ -217,6 +220,32 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         ctx.fill();
       });
       ctx.restore();
+
+      if (!reducedMotion) {
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        ctx.globalAlpha = 0.12;
+        for (let arm = 0; arm < ARM_COUNT; arm += 1) {
+          const phase = (Math.PI * 2 * arm) / ARM_COUNT + now * 0.00005;
+          ctx.beginPath();
+          for (let i = 0; i < 220; i += 1) {
+            const t = i / 220;
+            const radius = t * Math.min(width, height) * 0.6;
+            const angle = phase + t * 5.2;
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius * 0.6;
+            if (i === 0) {
+              ctx.moveTo(x, y);
+            } else {
+              ctx.lineTo(x, y);
+            }
+          }
+          ctx.strokeStyle = accent;
+          ctx.lineWidth = 18;
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
 
       const w0 = Math.max(0, 1 - Math.abs(state.mode - 0));
       const w1 = Math.max(0, 1 - Math.abs(state.mode - 1));
@@ -313,8 +342,6 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         pulsesRef.current = pulses.filter((pulse) => pulse.life > 0);
         ctx.globalAlpha = 0.3 + starW * 0.5;
         ctx.globalCompositeOperation = 'screen';
-        const centerX = width * 0.5;
-        const centerY = height * 0.45;
         const ring = ctx.createRadialGradient(centerX, centerY, 30, centerX, centerY, width * 0.5);
         ring.addColorStop(0, 'transparent');
         ring.addColorStop(0.4, accent);

@@ -33,65 +33,65 @@ const lightPresets: Record<WorldName, WorldPreset> = {
   space: {
     label: 'Space',
     background: {
-      top: '#F9FAF5',
-      bottom: '#E6EFE8'
+      top: '#F8FAF7',
+      bottom: '#E1EAE5'
     },
     particle: {
       color: '#1F5F3A',
-      alpha: 0.45,
-      size: [0.6, 1.6],
-      speed: { x: 2, y: 1 },
+      alpha: 0.5,
+      size: [0.6, 1.8],
+      speed: { x: 1.6, y: 1.1 },
       wobble: 0.4,
-      twinkle: 1.4,
+      twinkle: 1.6,
       mode: 0
     },
     nebula: {
-      core: '#EAF4EE',
-      outer: '#DDEBE2'
+      core: '#EAF5F1',
+      outer: '#D9E8E0'
     },
-    accent: '#CFE8DD'
+    accent: '#C6E3D6'
   },
   ocean: {
     label: 'Ocean',
     background: {
-      top: '#F3FAF6',
-      bottom: '#DCEFE7'
+      top: '#F1F8F4',
+      bottom: '#D5E7DF'
     },
     particle: {
       color: '#2E7355',
-      alpha: 0.35,
-      size: [1.2, 3.2],
-      speed: { x: 0.6, y: -6 },
-      wobble: 1.2,
+      alpha: 0.4,
+      size: [1.1, 3.4],
+      speed: { x: 0.5, y: -5.5 },
+      wobble: 1.4,
       twinkle: 0.4,
       mode: 1
     },
     nebula: {
-      core: '#E6F4EE',
-      outer: '#D3E8DF'
+      core: '#E2F2EA',
+      outer: '#CFE3DA'
     },
-    accent: '#BBD8CC'
+    accent: '#AFCFC1'
   },
   desert: {
     label: 'Desert',
     background: {
-      top: '#FBF7F0',
-      bottom: '#F0E5D4'
+      top: '#FAF4EA',
+      bottom: '#EADCC8'
     },
     particle: {
       color: '#7B5C3A',
-      alpha: 0.32,
+      alpha: 0.34,
       size: [0.5, 1.4],
-      speed: { x: 6, y: 0.4 },
-      wobble: 0.8,
+      speed: { x: 5.6, y: 0.4 },
+      wobble: 0.9,
       twinkle: 0.2,
       mode: 2
     },
     nebula: {
-      core: '#F6EEDD',
-      outer: '#E6D8C7'
+      core: '#F3E8D4',
+      outer: '#E4D1BE'
     },
-    accent: '#D3BFA7'
+    accent: '#C8B199'
   }
 };
 
@@ -99,65 +99,65 @@ const darkPresets: Record<WorldName, WorldPreset> = {
   space: {
     label: 'Space',
     background: {
-      top: '#0B1511',
-      bottom: '#0F1F18'
+      top: '#08130F',
+      bottom: '#0E1E17'
     },
     particle: {
       color: '#FAFAF7',
       alpha: 0.55,
-      size: [0.7, 1.8],
-      speed: { x: 1.4, y: 0.8 },
+      size: [0.7, 2],
+      speed: { x: 1.2, y: 0.8 },
       wobble: 0.3,
-      twinkle: 1.3,
+      twinkle: 1.5,
       mode: 0
     },
     nebula: {
-      core: '#203E30',
-      outer: '#14271F'
+      core: '#1F3D30',
+      outer: '#13261E'
     },
-    accent: '#95C0AA'
+    accent: '#8DB6A0'
   },
   ocean: {
     label: 'Ocean',
     background: {
-      top: '#10281D',
-      bottom: '#0B1F17'
+      top: '#0E241A',
+      bottom: '#0A1A14'
     },
     particle: {
       color: '#CFE8DD',
       alpha: 0.4,
-      size: [1.4, 3.4],
-      speed: { x: 0.5, y: -5.2 },
-      wobble: 1,
+      size: [1.2, 3.4],
+      speed: { x: 0.4, y: -4.8 },
+      wobble: 1.1,
       twinkle: 0.3,
       mode: 1
     },
     nebula: {
-      core: '#1F3B2E',
-      outer: '#0F241B'
+      core: '#1B352A',
+      outer: '#0D1F17'
     },
-    accent: '#7BAA95'
+    accent: '#77A28D'
   },
   desert: {
     label: 'Desert',
     background: {
-      top: '#173123',
-      bottom: '#13261C'
+      top: '#142B20',
+      bottom: '#0E2018'
     },
     particle: {
       color: '#EADCC6',
       alpha: 0.35,
       size: [0.6, 1.6],
-      speed: { x: 5, y: 0.3 },
-      wobble: 0.7,
+      speed: { x: 4.6, y: 0.3 },
+      wobble: 0.8,
       twinkle: 0.2,
       mode: 2
     },
     nebula: {
-      core: '#2B3C2E',
-      outer: '#1C281F'
+      core: '#26372A',
+      outer: '#18261D'
     },
-    accent: '#BFAF98'
+    accent: '#B4A48E'
   }
 };
 
