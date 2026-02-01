@@ -1,8 +1,4 @@
-import { BackgroundCanvas } from './visuals/BackgroundCanvas';
 import { Nav } from './components/Nav';
-import { WorldIndicator } from './components/WorldIndicator';
-import { useIntersectionWorld } from './hooks/useIntersectionWorld';
-import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 import { useTheme } from './hooks/useTheme';
 import { Hero } from './sections/Hero';
 import { AimAI } from './sections/AimAI';
@@ -18,13 +14,11 @@ const formspreeUrl = import.meta.env.VITE_FORMSPREE_URL || '';
 const corpEmail = import.meta.env.VITE_CORP_EMAIL || 'hello@grencape.xyz';
 
 function App() {
-  const reducedMotion = usePrefersReducedMotion();
-  const world = useIntersectionWorld();
+  const reducedMotion = true;
   const { theme, toggle } = useTheme();
 
   return (
     <div className="relative">
-      <BackgroundCanvas world={world} theme={theme} reducedMotion={reducedMotion} />
       <Nav theme={theme} onToggleTheme={toggle} />
       <main className="relative z-10">
         <Hero reducedMotion={reducedMotion} hfUrl={hfUrl} linkedInUrl={linkedInUrl} />
@@ -40,7 +34,6 @@ function App() {
         />
       </main>
       <Footer />
-      <WorldIndicator world={world} />
     </div>
   );
 }
