@@ -8,6 +8,7 @@ interface Particle {
   y: number;
   seed: number;
   size: number;
+  layer: number;
 }
 
 interface SceneState {
@@ -91,7 +92,8 @@ function createParticles(count: number, width: number, height: number): Particle
     x: Math.random() * width,
     y: Math.random() * height,
     seed: Math.random() * 1000,
-    size: Math.random()
+    size: Math.random(),
+    layer: Math.random()
   }));
 }
 
@@ -247,6 +249,24 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         ctx.restore();
       }
 
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      ctx.globalAlpha = reducedMotion ? 0.08 : 0.16;
+      for (let i = 0; i < 3; i += 1) {
+        const offset = (now * 0.00003 + i * 1.4) % (Math.PI * 2);
+        const x = centerX + Math.cos(offset) * width * 0.18;
+        const y = centerY + Math.sin(offset * 0.9) * height * 0.12;
+        const radius = Math.min(width, height) * (0.42 + i * 0.08);
+        const glow = ctx.createRadialGradient(x, y, radius * 0.15, x, y, radius);
+        glow.addColorStop(0, nebulaCore);
+        glow.addColorStop(1, 'transparent');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+
       const w0 = Math.max(0, 1 - Math.abs(state.mode - 0));
       const w1 = Math.max(0, 1 - Math.abs(state.mode - 1));
       const w2 = Math.max(0, 1 - Math.abs(state.mode - 2));
@@ -260,8 +280,9 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
       const particles = particlesRef.current;
 
       particles.forEach((particle) => {
-        const driftX = state.speedX * dt;
-        const driftY = state.speedY * dt;
+        const depth = 0.4 + particle.layer * 0.8;
+        const driftX = state.speedX * dt * depth;
+        const driftY = state.speedY * dt * depth;
         const wobble = Math.sin(now * 0.0008 + particle.seed) * state.wobble;
 
         if (!reducedMotion) {
@@ -275,9 +296,9 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         if (particle.y < -20) particle.y = height + 20;
 
         const twinkle = 0.7 + 0.3 * Math.sin(now * 0.0012 * state.twinkle + particle.seed);
-        const alpha = baseAlpha * (starW * twinkle + bubbleW * 0.7 + dustW * 0.5);
+        const alpha = baseAlpha * depth * (starW * twinkle + bubbleW * 0.7 + dustW * 0.5);
         const sizeRange = lerp(state.sizeMin, state.sizeMax, particle.size);
-        const radius = sizeRange * (starW * 0.7 + bubbleW * 1.6 + dustW * 0.4);
+        const radius = sizeRange * depth * (starW * 0.7 + bubbleW * 1.6 + dustW * 0.4);
 
         ctx.beginPath();
         ctx.globalAlpha = alpha;
