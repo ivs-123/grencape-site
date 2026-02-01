@@ -15,6 +15,9 @@ interface SceneState {
   bgBottom: [number, number, number];
   particleColor: [number, number, number];
   particleAlpha: number;
+  nebulaCore: [number, number, number];
+  nebulaOuter: [number, number, number];
+  accent: [number, number, number];
   sizeMin: number;
   sizeMax: number;
   speedX: number;
@@ -50,6 +53,9 @@ function stateFromPreset(world: WorldName, theme: ThemeName): SceneState {
     bgBottom: hexToRgb(preset.background.bottom),
     particleColor: hexToRgb(preset.particle.color),
     particleAlpha: preset.particle.alpha,
+    nebulaCore: hexToRgb(preset.nebula.core),
+    nebulaOuter: hexToRgb(preset.nebula.outer),
+    accent: hexToRgb(preset.accent),
     sizeMin: preset.particle.size[0],
     sizeMax: preset.particle.size[1],
     speedX: preset.particle.speed.x,
@@ -66,6 +72,9 @@ function blendState(current: SceneState, target: SceneState, t: number): SceneSt
     bgBottom: lerpColor(current.bgBottom, target.bgBottom, t),
     particleColor: lerpColor(current.particleColor, target.particleColor, t),
     particleAlpha: lerp(current.particleAlpha, target.particleAlpha, t),
+    nebulaCore: lerpColor(current.nebulaCore, target.nebulaCore, t),
+    nebulaOuter: lerpColor(current.nebulaOuter, target.nebulaOuter, t),
+    accent: lerpColor(current.accent, target.accent, t),
     sizeMin: lerp(current.sizeMin, target.sizeMin, t),
     sizeMax: lerp(current.sizeMax, target.sizeMax, t),
     speedX: lerp(current.speedX, target.speedX, t),
@@ -85,9 +94,45 @@ function createParticles(count: number, width: number, height: number): Particle
   }));
 }
 
+interface Wisp {
+  x: number;
+  y: number;
+  radius: number;
+  drift: number;
+  seed: number;
+}
+
+interface Comet {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  life: number;
+}
+
+interface Pulse {
+  x: number;
+  y: number;
+  radius: number;
+  life: number;
+}
+
+function createWisps(count: number, width: number, height: number): Wisp[] {
+  return Array.from({ length: count }).map(() => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    radius: lerp(180, 420, Math.random()),
+    drift: lerp(0.5, 1.8, Math.random()),
+    seed: Math.random() * 1000
+  }));
+}
+
 export function BackgroundCanvas({ world, theme, reducedMotion }: { world: WorldName; theme: ThemeName; reducedMotion: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
+  const wispsRef = useRef<Wisp[]>([]);
+  const cometsRef = useRef<Comet[]>([]);
+  const pulsesRef = useRef<Pulse[]>([]);
   const stateRef = useRef<SceneState>(stateFromPreset(world, theme));
   const targetRef = useRef<SceneState>(stateFromPreset(world, theme));
   const { width, height, dpr, isMobile } = useViewport();
@@ -117,6 +162,7 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     particlesRef.current = createParticles(particleCount, width, height);
+    wispsRef.current = createWisps(Math.max(4, Math.floor(particleCount / 18)), width, height);
   }, [width, height, dpr, particleCount]);
 
   useEffect(() => {
@@ -147,6 +193,30 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
       gradient.addColorStop(1, `rgb(${state.bgBottom[0]}, ${state.bgBottom[1]}, ${state.bgBottom[2]})`);
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
+
+      const nebulaCore = `rgb(${state.nebulaCore[0]}, ${state.nebulaCore[1]}, ${state.nebulaCore[2]})`;
+      const nebulaOuter = `rgb(${state.nebulaOuter[0]}, ${state.nebulaOuter[1]}, ${state.nebulaOuter[2]})`;
+      const accent = `rgb(${state.accent[0]}, ${state.accent[1]}, ${state.accent[2]})`;
+      const wisps = wispsRef.current;
+      ctx.save();
+      ctx.globalAlpha = reducedMotion ? 0.12 : 0.2;
+      ctx.globalCompositeOperation = 'screen';
+      wisps.forEach((wisp, index) => {
+        const wobble = Math.sin(now * 0.00015 + wisp.seed) * 18;
+        const driftX = Math.cos(now * 0.00008 + index) * wisp.drift;
+        const driftY = Math.sin(now * 0.0001 + index) * wisp.drift;
+        const x = wisp.x + driftX + wobble;
+        const y = wisp.y + driftY - wobble * 0.3;
+        const radius = wisp.radius + Math.sin(now * 0.0002 + wisp.seed) * 20;
+        const glow = ctx.createRadialGradient(x, y, radius * 0.2, x, y, radius);
+        glow.addColorStop(0, nebulaCore);
+        glow.addColorStop(1, nebulaOuter);
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.restore();
 
       const w0 = Math.max(0, 1 - Math.abs(state.mode - 0));
       const w1 = Math.max(0, 1 - Math.abs(state.mode - 1));
@@ -186,6 +256,75 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         ctx.arc(particle.x, particle.y, radius, 0, Math.PI * 2);
         ctx.fill();
       });
+
+      if (!reducedMotion && starW > 0.4) {
+        if (Math.random() < 0.015) {
+          cometsRef.current.push({
+            x: Math.random() * width * 1.2 - width * 0.1,
+            y: Math.random() * height * 0.4,
+            vx: lerp(120, 220, Math.random()),
+            vy: lerp(40, 120, Math.random()),
+            life: 1
+          });
+        }
+        if (Math.random() < 0.01) {
+          pulsesRef.current.push({
+            x: width * (0.3 + Math.random() * 0.4),
+            y: height * (0.2 + Math.random() * 0.4),
+            radius: lerp(80, 160, Math.random()),
+            life: 1
+          });
+        }
+      }
+
+      if (!reducedMotion) {
+        const comets = cometsRef.current;
+        comets.forEach((comet) => {
+          comet.x += comet.vx * dt;
+          comet.y += comet.vy * dt;
+          comet.life -= dt * 0.6;
+          const tail = 140;
+          const grad = ctx.createLinearGradient(comet.x, comet.y, comet.x - tail, comet.y - tail * 0.6);
+          grad.addColorStop(0, accent);
+          grad.addColorStop(1, 'transparent');
+          ctx.strokeStyle = grad;
+          ctx.lineWidth = 2.2;
+          ctx.globalAlpha = Math.max(0, comet.life);
+          ctx.beginPath();
+          ctx.moveTo(comet.x, comet.y);
+          ctx.lineTo(comet.x - tail, comet.y - tail * 0.6);
+          ctx.stroke();
+        });
+        cometsRef.current = comets.filter((comet) => comet.life > 0 && comet.x < width + 200 && comet.y < height + 200);
+        const pulses = pulsesRef.current;
+        pulses.forEach((pulse) => {
+          pulse.life -= dt * 0.4;
+          pulse.radius += dt * 80;
+          const fade = Math.max(0, pulse.life);
+          const glow = ctx.createRadialGradient(pulse.x, pulse.y, 0, pulse.x, pulse.y, pulse.radius);
+          glow.addColorStop(0, accent);
+          glow.addColorStop(1, 'transparent');
+          ctx.fillStyle = glow;
+          ctx.globalAlpha = 0.25 * fade;
+          ctx.beginPath();
+          ctx.arc(pulse.x, pulse.y, pulse.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        pulsesRef.current = pulses.filter((pulse) => pulse.life > 0);
+        ctx.globalAlpha = 0.3 + starW * 0.5;
+        ctx.globalCompositeOperation = 'screen';
+        const centerX = width * 0.5;
+        const centerY = height * 0.45;
+        const ring = ctx.createRadialGradient(centerX, centerY, 30, centerX, centerY, width * 0.5);
+        ring.addColorStop(0, 'transparent');
+        ring.addColorStop(0.4, accent);
+        ring.addColorStop(1, 'transparent');
+        ctx.fillStyle = ring;
+        ctx.beginPath();
+        ctx.ellipse(centerX, centerY, width * 0.55, width * 0.22, now * 0.00012, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+      }
 
       ctx.globalAlpha = 1;
       frameId = requestAnimationFrame(draw);

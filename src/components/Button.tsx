@@ -8,7 +8,8 @@ interface ButtonProps {
 }
 
 export function Button({ children, href, onClick, variant = 'primary' }: ButtonProps) {
-  const base = 'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition focus-ring';
+  const base =
+    'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition focus-ring';
   const styles =
     variant === 'primary'
       ? 'bg-[var(--accent)] text-[var(--bg)] shadow-soft hover:opacity-90'

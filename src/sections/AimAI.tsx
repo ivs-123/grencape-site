@@ -16,12 +16,12 @@ export function AimAI({ reducedMotion, hfUrl }: AimAIProps) {
       };
 
   return (
-    <section id="aim" data-world="space" className="section-pad">
+    <section id="ais" data-world="space" className="section-pad">
       <div className="max-container grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div {...motionProps}>
-          <h2 className="section-title mb-4">AIM AI</h2>
+          <h2 className="section-title mb-4">AIS AI</h2>
           <p className="section-lead">
-            AIM AI is our compact, highly efficient multilingual LLM runtime. We focus on reasoning + verification
+            AIS AI is our compact, highly efficient multilingual LLM runtime. We focus on reasoning + verification
             workflows, bringing fast evaluation, guardrails, and scalable ecosystem design from research into
             production.
           </p>

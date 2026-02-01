@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const items = [
   {
-    title: 'AIM AI',
+    title: 'AIS AI',
     description: 'Efficient LLM runtime with reasoning + verification workflows.'
   },
   {

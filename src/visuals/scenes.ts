@@ -16,6 +16,11 @@ export interface WorldPreset {
     twinkle: number;
     mode: number;
   };
+  nebula: {
+    core: string;
+    outer: string;
+  };
+  accent: string;
 }
 
 export const WORLD_LABELS: Record<WorldName, string> = {
@@ -39,7 +44,12 @@ const lightPresets: Record<WorldName, WorldPreset> = {
       wobble: 0.4,
       twinkle: 1.4,
       mode: 0
-    }
+    },
+    nebula: {
+      core: '#EAF4EE',
+      outer: '#DDEBE2'
+    },
+    accent: '#CFE8DD'
   },
   ocean: {
     label: 'Ocean',
@@ -55,7 +65,12 @@ const lightPresets: Record<WorldName, WorldPreset> = {
       wobble: 1.2,
       twinkle: 0.4,
       mode: 1
-    }
+    },
+    nebula: {
+      core: '#E6F4EE',
+      outer: '#D3E8DF'
+    },
+    accent: '#BBD8CC'
   },
   desert: {
     label: 'Desert',
@@ -71,7 +86,12 @@ const lightPresets: Record<WorldName, WorldPreset> = {
       wobble: 0.8,
       twinkle: 0.2,
       mode: 2
-    }
+    },
+    nebula: {
+      core: '#F6EEDD',
+      outer: '#E6D8C7'
+    },
+    accent: '#D3BFA7'
   }
 };
 
@@ -90,7 +110,12 @@ const darkPresets: Record<WorldName, WorldPreset> = {
       wobble: 0.3,
       twinkle: 1.3,
       mode: 0
-    }
+    },
+    nebula: {
+      core: '#203E30',
+      outer: '#14271F'
+    },
+    accent: '#95C0AA'
   },
   ocean: {
     label: 'Ocean',
@@ -106,7 +131,12 @@ const darkPresets: Record<WorldName, WorldPreset> = {
       wobble: 1,
       twinkle: 0.3,
       mode: 1
-    }
+    },
+    nebula: {
+      core: '#1F3B2E',
+      outer: '#0F241B'
+    },
+    accent: '#7BAA95'
   },
   desert: {
     label: 'Desert',
@@ -122,7 +152,12 @@ const darkPresets: Record<WorldName, WorldPreset> = {
       wobble: 0.7,
       twinkle: 0.2,
       mode: 2
-    }
+    },
+    nebula: {
+      core: '#2B3C2E',
+      outer: '#1C281F'
+    },
+    accent: '#BFAF98'
   }
 };
 

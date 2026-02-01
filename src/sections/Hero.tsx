@@ -22,12 +22,15 @@ export function Hero({ reducedMotion, hfUrl, linkedInUrl }: HeroProps) {
       <div className="max-container">
         <motion.div {...motionProps}>
           <p className="mb-6 text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Quiet tech. Premium craft.</p>
-          <h1 className="hero-title mb-6">GRENCAPE</h1>
+          <div className="relative inline-block">
+            <div className="halo" aria-hidden="true" />
+            <h1 className="hero-title mb-6">GRENCAPE</h1>
+          </div>
           <p className="hero-subtitle max-w-2xl">
             Building an AI ecosystem: efficient models, applied data science, and production systems.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Button href="#aim">Explore AIM AI</Button>
+            <Button href="#ais">Explore AIS AI</Button>
             <Button href="#outsourcing" variant="ghost">
               Outsourcing / Subcontracting
             </Button>

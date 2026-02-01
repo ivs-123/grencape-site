@@ -106,7 +106,7 @@ export function Contact({ reducedMotion, linkedInUrl, formspreeUrl, corpEmail }:
               name="interest"
               className="mt-2 w-full rounded-xl border border-[var(--border)] bg-transparent px-3 py-2 text-sm focus-ring"
             >
-              <option>AI runtime / AIM AI</option>
+              <option>AI runtime / AIS AI</option>
               <option>Data science / analytics</option>
               <option>Outsourcing / subcontracting</option>
               <option>Advisory or audit</option>

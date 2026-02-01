@@ -4,7 +4,7 @@ import { ThemeToggle } from './ThemeToggle';
 
 const links = [
   { label: 'Home', href: '#home' },
-  { label: 'AIM AI', href: '#aim' },
+  { label: 'AIS AI', href: '#ais' },
   { label: 'Data Science', href: '#data' },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Outsourcing', href: '#outsourcing' },
