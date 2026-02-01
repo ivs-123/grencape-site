@@ -18,7 +18,7 @@ export function Hero({ reducedMotion, hfUrl, linkedInUrl }: HeroProps) {
       };
 
   return (
-    <section id="home" data-world="space" className="section-pad">
+    <section id="home" data-world="deep" className="section-pad">
       <div className="max-container">
         <motion.div {...motionProps}>
           <p className="mb-6 text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Quiet tech. Premium craft.</p>

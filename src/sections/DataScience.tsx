@@ -11,7 +11,7 @@ export function DataScience({ reducedMotion }: { reducedMotion: boolean }) {
       };
 
   return (
-    <section id="data" data-world="ocean" className="section-pad">
+    <section id="data" data-world="lensing" className="section-pad">
       <div className="max-container grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div {...motionProps}>
           <h2 className="section-title mb-4">Data Science</h2>

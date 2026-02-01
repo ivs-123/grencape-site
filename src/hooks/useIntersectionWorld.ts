@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { WorldName } from '../visuals/scenes';
 
-const DEFAULT_WORLD: WorldName = 'space';
+const DEFAULT_WORLD: WorldName = 'deep';
 
 export function useIntersectionWorld(): WorldName {
   const [activeWorld, setActiveWorld] = useState<WorldName>(DEFAULT_WORLD);

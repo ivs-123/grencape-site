@@ -11,7 +11,7 @@ export function Outsourcing({ reducedMotion }: { reducedMotion: boolean }) {
       };
 
   return (
-    <section id="outsourcing" data-world="desert" className="section-pad">
+    <section id="outsourcing" data-world="nebula" className="section-pad">
       <div className="max-container grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div {...motionProps}>
           <h2 className="section-title mb-4">Outsourcing / Subcontracting</h2>

@@ -58,7 +58,7 @@ export function Contact({ reducedMotion, linkedInUrl, formspreeUrl, corpEmail }:
   };
 
   return (
-    <section id="contact" data-world="desert" className="section-pad">
+    <section id="contact" data-world="deep" className="section-pad">
       <div className="max-container grid gap-10 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div {...motionProps}>
           <h2 className="section-title mb-4">Contact</h2>

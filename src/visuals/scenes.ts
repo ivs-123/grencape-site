@@ -1,4 +1,4 @@
-export type WorldName = 'space' | 'ocean' | 'desert';
+export type WorldName = 'deep' | 'nebula' | 'lensing' | 'accretion';
 export type ThemeName = 'light' | 'dark';
 
 export interface WorldPreset {
@@ -24,14 +24,15 @@ export interface WorldPreset {
 }
 
 export const WORLD_LABELS: Record<WorldName, string> = {
-  space: 'Space',
-  ocean: 'Ocean',
-  desert: 'Desert'
+  deep: 'Deep Space',
+  nebula: 'Nebula',
+  lensing: 'Lensing',
+  accretion: 'Accretion'
 };
 
 const lightPresets: Record<WorldName, WorldPreset> = {
-  space: {
-    label: 'Space',
+  deep: {
+    label: 'Deep Space',
     background: {
       top: '#0A0F18',
       bottom: '#0C1320'
@@ -51,8 +52,8 @@ const lightPresets: Record<WorldName, WorldPreset> = {
     },
     accent: '#7BC8FF'
   },
-  ocean: {
-    label: 'Ocean',
+  nebula: {
+    label: 'Nebula',
     background: {
       top: '#0A101C',
       bottom: '#0A1524'
@@ -72,8 +73,8 @@ const lightPresets: Record<WorldName, WorldPreset> = {
     },
     accent: '#7FB2FF'
   },
-  desert: {
-    label: 'Desert',
+  lensing: {
+    label: 'Lensing',
     background: {
       top: '#0C1322',
       bottom: '#0B1222'
@@ -82,7 +83,7 @@ const lightPresets: Record<WorldName, WorldPreset> = {
       color: '#BFD7FF',
       alpha: 0.38,
       size: [0.6, 2],
-      speed: { x: 2.6, y: 0.3 },
+      speed: { x: 1.6, y: 0.3 },
       wobble: 0.7,
       twinkle: 0.4,
       mode: 2
@@ -92,12 +93,33 @@ const lightPresets: Record<WorldName, WorldPreset> = {
       outer: '#0D162A'
     },
     accent: '#7EA8FF'
+  },
+  accretion: {
+    label: 'Accretion',
+    background: {
+      top: '#0A0F1A',
+      bottom: '#0A0F1D'
+    },
+    particle: {
+      color: '#CBE4FF',
+      alpha: 0.45,
+      size: [0.7, 2.4],
+      speed: { x: 1.4, y: 0.6 },
+      wobble: 0.6,
+      twinkle: 1.3,
+      mode: 3
+    },
+    nebula: {
+      core: '#1B2A40',
+      outer: '#0E182B'
+    },
+    accent: '#9FD4FF'
   }
 };
 
 const darkPresets: Record<WorldName, WorldPreset> = {
-  space: {
-    label: 'Space',
+  deep: {
+    label: 'Deep Space',
     background: {
       top: '#050913',
       bottom: '#070C19'
@@ -117,8 +139,8 @@ const darkPresets: Record<WorldName, WorldPreset> = {
     },
     accent: '#7DCBFF'
   },
-  ocean: {
-    label: 'Ocean',
+  nebula: {
+    label: 'Nebula',
     background: {
       top: '#050A16',
       bottom: '#081021'
@@ -138,8 +160,8 @@ const darkPresets: Record<WorldName, WorldPreset> = {
     },
     accent: '#7FB2FF'
   },
-  desert: {
-    label: 'Desert',
+  lensing: {
+    label: 'Lensing',
     background: {
       top: '#060B18',
       bottom: '#08101D'
@@ -148,7 +170,7 @@ const darkPresets: Record<WorldName, WorldPreset> = {
       color: '#C7DAFF',
       alpha: 0.4,
       size: [0.7, 2.2],
-      speed: { x: 2.1, y: 0.3 },
+      speed: { x: 1.4, y: 0.3 },
       wobble: 0.7,
       twinkle: 0.4,
       mode: 2
@@ -158,6 +180,27 @@ const darkPresets: Record<WorldName, WorldPreset> = {
       outer: '#0A1226'
     },
     accent: '#7EA8FF'
+  },
+  accretion: {
+    label: 'Accretion',
+    background: {
+      top: '#040813',
+      bottom: '#070B18'
+    },
+    particle: {
+      color: '#D7E8FF',
+      alpha: 0.45,
+      size: [0.8, 2.6],
+      speed: { x: 1.2, y: 0.6 },
+      wobble: 0.6,
+      twinkle: 1.2,
+      mode: 3
+    },
+    nebula: {
+      core: '#13203A',
+      outer: '#0A1226'
+    },
+    accent: '#9FD4FF'
   }
 };
 

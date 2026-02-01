@@ -204,26 +204,40 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
       const wisps = wispsRef.current;
       const centerX = width * 0.5;
       const centerY = height * 0.45;
-      ctx.save();
-      ctx.globalCompositeOperation = 'screen';
-      ctx.globalAlpha = reducedMotion ? 0.04 : 0.08;
-      ctx.strokeStyle = accent;
-      ctx.lineWidth = 1;
-      const offsetX = (now * 0.003) % GRID_SIZE;
-      const offsetY = (now * 0.002) % GRID_SIZE;
-      for (let x = -GRID_SIZE; x <= width + GRID_SIZE; x += GRID_SIZE) {
-        ctx.beginPath();
-        ctx.moveTo(x + offsetX, 0);
-        ctx.lineTo(x + offsetX, height);
-        ctx.stroke();
+
+      const w0 = Math.max(0, 1 - Math.abs(state.mode - 0));
+      const w1 = Math.max(0, 1 - Math.abs(state.mode - 1));
+      const w2 = Math.max(0, 1 - Math.abs(state.mode - 2));
+      const w3 = Math.max(0, 1 - Math.abs(state.mode - 3));
+      const sum = w0 + w1 + w2 + w3 || 1;
+      const deepW = w0 / sum;
+      const nebulaW = w1 / sum;
+      const lensW = w2 / sum;
+      const accW = w3 / sum;
+
+      if (lensW > 0.05) {
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        ctx.globalAlpha = (reducedMotion ? 0.03 : 0.08) * lensW;
+        ctx.strokeStyle = accent;
+        ctx.lineWidth = 1;
+        const offsetX = (now * 0.003) % GRID_SIZE;
+        const offsetY = (now * 0.002) % GRID_SIZE;
+        for (let x = -GRID_SIZE; x <= width + GRID_SIZE; x += GRID_SIZE) {
+          ctx.beginPath();
+          ctx.moveTo(x + offsetX, 0);
+          ctx.lineTo(x + offsetX, height);
+          ctx.stroke();
+        }
+        for (let y = -GRID_SIZE; y <= height + GRID_SIZE; y += GRID_SIZE) {
+          ctx.beginPath();
+          ctx.moveTo(0, y + offsetY);
+          ctx.lineTo(width, y + offsetY);
+          ctx.stroke();
+        }
+        ctx.restore();
       }
-      for (let y = -GRID_SIZE; y <= height + GRID_SIZE; y += GRID_SIZE) {
-        ctx.beginPath();
-        ctx.moveTo(0, y + offsetY);
-        ctx.lineTo(width, y + offsetY);
-        ctx.stroke();
-      }
-      ctx.restore();
+
       ctx.save();
       ctx.globalAlpha = reducedMotion ? 0.12 : 0.2;
       ctx.globalCompositeOperation = 'screen';
@@ -244,10 +258,10 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
       });
       ctx.restore();
 
-      if (!reducedMotion) {
+      if (!reducedMotion && (nebulaW > 0.05 || deepW > 0.05)) {
         ctx.save();
         ctx.globalCompositeOperation = 'screen';
-        ctx.globalAlpha = 0.12;
+        ctx.globalAlpha = 0.1 + nebulaW * 0.1;
         for (let arm = 0; arm < ARM_COUNT; arm += 1) {
           const phase = (Math.PI * 2 * arm) / ARM_COUNT + now * 0.00005;
           ctx.beginPath();
@@ -264,37 +278,31 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
             }
           }
           ctx.strokeStyle = accent;
-          ctx.lineWidth = 18;
+          ctx.lineWidth = 14 + nebulaW * 10;
           ctx.stroke();
         }
         ctx.restore();
       }
 
-      ctx.save();
-      ctx.globalCompositeOperation = 'screen';
-      ctx.globalAlpha = reducedMotion ? 0.08 : 0.16;
-      for (let i = 0; i < 3; i += 1) {
-        const offset = (now * 0.00003 + i * 1.4) % (Math.PI * 2);
-        const x = centerX + Math.cos(offset) * width * 0.18;
-        const y = centerY + Math.sin(offset * 0.9) * height * 0.12;
-        const radius = Math.min(width, height) * (0.42 + i * 0.08);
-        const glow = ctx.createRadialGradient(x, y, radius * 0.15, x, y, radius);
-        glow.addColorStop(0, nebulaCore);
-        glow.addColorStop(1, 'transparent');
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fill();
+      if (nebulaW > 0.05) {
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        ctx.globalAlpha = (reducedMotion ? 0.08 : 0.16) * nebulaW;
+        for (let i = 0; i < 3; i += 1) {
+          const offset = (now * 0.00003 + i * 1.4) % (Math.PI * 2);
+          const x = centerX + Math.cos(offset) * width * 0.18;
+          const y = centerY + Math.sin(offset * 0.9) * height * 0.12;
+          const radius = Math.min(width, height) * (0.42 + i * 0.08);
+          const glow = ctx.createRadialGradient(x, y, radius * 0.15, x, y, radius);
+          glow.addColorStop(0, nebulaCore);
+          glow.addColorStop(1, 'transparent');
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
       }
-      ctx.restore();
-
-      const w0 = Math.max(0, 1 - Math.abs(state.mode - 0));
-      const w1 = Math.max(0, 1 - Math.abs(state.mode - 1));
-      const w2 = Math.max(0, 1 - Math.abs(state.mode - 2));
-      const sum = w0 + w1 + w2 || 1;
-      const starW = w0 / sum;
-      const bubbleW = w1 / sum;
-      const dustW = w2 / sum;
 
       const baseAlpha = state.particleAlpha;
       const color = `rgb(${state.particleColor[0]}, ${state.particleColor[1]}, ${state.particleColor[2]})`;
@@ -317,9 +325,9 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         if (particle.y < -20) particle.y = height + 20;
 
         const twinkle = 0.7 + 0.3 * Math.sin(now * 0.0012 * state.twinkle + particle.seed);
-        const alpha = baseAlpha * depth * (starW * twinkle + bubbleW * 0.7 + dustW * 0.5);
+        const alpha = baseAlpha * depth * (deepW * twinkle + nebulaW * 0.7 + lensW * 0.5 + accW * 0.8);
         const sizeRange = lerp(state.sizeMin, state.sizeMax, particle.size);
-        const radius = sizeRange * depth * (starW * 0.7 + bubbleW * 1.6 + dustW * 0.4);
+        const radius = sizeRange * depth * (deepW * 0.9 + nebulaW * 1.3 + lensW * 0.6 + accW * 0.9);
 
         ctx.beginPath();
         ctx.globalAlpha = alpha;
@@ -328,7 +336,7 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         ctx.fill();
       });
 
-      if (!reducedMotion && starW > 0.4) {
+      if (!reducedMotion && deepW > 0.35) {
         if (Math.random() < 0.015) {
           cometsRef.current.push({
             x: Math.random() * width * 1.2 - width * 0.1,
@@ -382,7 +390,8 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
           ctx.fill();
         });
         pulsesRef.current = pulses.filter((pulse) => pulse.life > 0);
-        ctx.globalAlpha = 0.3 + starW * 0.5;
+
+        ctx.globalAlpha = 0.2 + accW * 0.6;
         ctx.globalCompositeOperation = 'screen';
         const ring = ctx.createRadialGradient(centerX, centerY, 30, centerX, centerY, width * 0.5);
         ring.addColorStop(0, 'transparent');
@@ -392,6 +401,34 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
         ctx.beginPath();
         ctx.ellipse(centerX, centerY, width * 0.55, width * 0.22, now * 0.00012, 0, Math.PI * 2);
         ctx.fill();
+
+        if (accW > 0.05) {
+          ctx.save();
+          ctx.globalAlpha = 0.9 * accW;
+          const holeRadius = Math.min(width, height) * 0.1;
+          const hole = ctx.createRadialGradient(centerX, centerY, holeRadius * 0.2, centerX, centerY, holeRadius);
+          hole.addColorStop(0, '#000000');
+          hole.addColorStop(1, '#05070B');
+          ctx.fillStyle = hole;
+          ctx.beginPath();
+          ctx.arc(centerX, centerY, holeRadius, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        if (lensW > 0.05) {
+          ctx.save();
+          ctx.globalAlpha = 0.2 * lensW;
+          ctx.strokeStyle = accent;
+          ctx.lineWidth = 2;
+          for (let i = 0; i < 3; i += 1) {
+            const arcR = Math.min(width, height) * (0.18 + i * 0.08);
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY, arcR * 1.2, arcR * 0.55, now * 0.00008 + i, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
         ctx.globalCompositeOperation = 'source-over';
       }
 

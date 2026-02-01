@@ -30,7 +30,7 @@ export function Portfolio({ reducedMotion }: { reducedMotion: boolean }) {
       };
 
   return (
-    <section id="portfolio" data-world="ocean" className="section-pad">
+    <section id="portfolio" data-world="accretion" className="section-pad">
       <div className="max-container">
         <motion.div {...motionProps}>
           <h2 className="section-title mb-4">Portfolio</h2>

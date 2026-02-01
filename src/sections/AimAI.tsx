@@ -16,7 +16,7 @@ export function AimAI({ reducedMotion, hfUrl }: AimAIProps) {
       };
 
   return (
-    <section id="ais" data-world="space" className="section-pad">
+    <section id="ais" data-world="nebula" className="section-pad">
       <div className="max-container grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div {...motionProps}>
           <h2 className="section-title mb-4">AIS AI</h2>
