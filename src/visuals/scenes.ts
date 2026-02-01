@@ -33,23 +33,23 @@ const lightPresets: Record<WorldName, WorldPreset> = {
   space: {
     label: 'Space',
     background: {
-      top: '#F8FAF7',
-      bottom: '#E1EAE5'
+      top: '#F6FAF8',
+      bottom: '#DCE7E6'
     },
     particle: {
       color: '#1F5F3A',
-      alpha: 0.5,
+      alpha: 0.55,
       size: [0.6, 1.8],
       speed: { x: 1.6, y: 1.1 },
       wobble: 0.4,
-      twinkle: 1.6,
+      twinkle: 1.8,
       mode: 0
     },
     nebula: {
-      core: '#EAF5F1',
-      outer: '#D9E8E0'
+      core: '#E6F5F1',
+      outer: '#D2E4E2'
     },
-    accent: '#C6E3D6'
+    accent: '#B8DCD0'
   },
   ocean: {
     label: 'Ocean',
@@ -99,8 +99,8 @@ const darkPresets: Record<WorldName, WorldPreset> = {
   space: {
     label: 'Space',
     background: {
-      top: '#08130F',
-      bottom: '#0E1E17'
+      top: '#07120E',
+      bottom: '#0C1B16'
     },
     particle: {
       color: '#FAFAF7',
@@ -108,14 +108,14 @@ const darkPresets: Record<WorldName, WorldPreset> = {
       size: [0.7, 2],
       speed: { x: 1.2, y: 0.8 },
       wobble: 0.3,
-      twinkle: 1.5,
+      twinkle: 1.7,
       mode: 0
     },
     nebula: {
-      core: '#1F3D30',
-      outer: '#13261E'
+      core: '#1B3A2E',
+      outer: '#11241B'
     },
-    accent: '#8DB6A0'
+    accent: '#86B09A'
   },
   ocean: {
     label: 'Ocean',

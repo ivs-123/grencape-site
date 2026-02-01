@@ -31,6 +31,7 @@ interface SceneState {
 const TARGET_FPS = 30;
 const TRANSITION_SECONDS = 12;
 const ARM_COUNT = 3;
+const GRID_SIZE = 120;
 
 function hexToRgb(hex: string): [number, number, number] {
   const clean = hex.replace('#', '');
@@ -203,6 +204,26 @@ export function BackgroundCanvas({ world, theme, reducedMotion }: { world: World
       const wisps = wispsRef.current;
       const centerX = width * 0.5;
       const centerY = height * 0.45;
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      ctx.globalAlpha = reducedMotion ? 0.04 : 0.08;
+      ctx.strokeStyle = accent;
+      ctx.lineWidth = 1;
+      const offsetX = (now * 0.003) % GRID_SIZE;
+      const offsetY = (now * 0.002) % GRID_SIZE;
+      for (let x = -GRID_SIZE; x <= width + GRID_SIZE; x += GRID_SIZE) {
+        ctx.beginPath();
+        ctx.moveTo(x + offsetX, 0);
+        ctx.lineTo(x + offsetX, height);
+        ctx.stroke();
+      }
+      for (let y = -GRID_SIZE; y <= height + GRID_SIZE; y += GRID_SIZE) {
+        ctx.beginPath();
+        ctx.moveTo(0, y + offsetY);
+        ctx.lineTo(width, y + offsetY);
+        ctx.stroke();
+      }
+      ctx.restore();
       ctx.save();
       ctx.globalAlpha = reducedMotion ? 0.12 : 0.2;
       ctx.globalCompositeOperation = 'screen';
