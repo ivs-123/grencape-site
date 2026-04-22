@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+ï»¿import { motion } from 'framer-motion';
 
 type Project = {
   name: string;
@@ -135,22 +135,20 @@ function App() {
 
       <main id="top">
         <section className="hero">
-          <div className="hero-noise" aria-hidden="true" />
-          <div className="hero-rings" aria-hidden="true" />
           <motion.div
             className="hero-content"
-            initial={{ opacity: 0, y: 32 }}
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.7 }}
           >
             <p className="eyebrow">GRENCAPE PRESENTS</p>
             <h1>
               ERA1
-              <span>the next technology concern</span>
+              <span>Technology Concern Architecture</span>
             </h1>
             <p className="hero-lead">
-              We are building a unified ecosystem where AI intelligence, infrastructure and fintech products
-              run as one strategic machine.
+              Grencape is building ERA1 as a structured ecosystem where intelligence, infrastructure and
+              financial rails operate as one integrated system.
             </p>
             <div className="hero-actions">
               <a href="#projects" className="btn btn-primary">
@@ -161,26 +159,30 @@ function App() {
               </a>
             </div>
           </motion.div>
-          <motion.div
-            className="hero-strip"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.35, duration: 0.8 }}
-          >
-            <p>
-              AIS AI · Semanta AI · Gamma AI Hedge Fund · ERA Cloud · ERA DB · ERA Prism Data · SomeBox ·
-              One Browser · Quantum Messenger · Mind Music · ERA Pay · MoneyOne
-            </p>
-          </motion.div>
+
+          <div className="hero-executive">
+            <div className="exec-item">
+              <p>Active initiatives</p>
+              <strong>12</strong>
+            </div>
+            <div className="exec-item">
+              <p>Strategic layers</p>
+              <strong>5</strong>
+            </div>
+            <div className="exec-item">
+              <p>Focus domains</p>
+              <strong>AI, Infrastructure, Fintech</strong>
+            </div>
+          </div>
         </section>
 
         <section className="section section-layers" id="layers">
           <motion.div
             className="section-head"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewport}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.45 }}
           >
             <p className="eyebrow">ERA1 ARCHITECTURE</p>
             <h2>One concern, five layers, one operating logic.</h2>
@@ -190,10 +192,10 @@ function App() {
               <motion.article
                 key={layer.title}
                 className="layer-row"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewport}
-                transition={{ duration: 0.45, delay: index * 0.06 }}
+                transition={{ duration: 0.3, delay: index * 0.04 }}
               >
                 <p className="layer-index">0{index + 1}</p>
                 <div>
@@ -209,10 +211,10 @@ function App() {
         <section className="section section-projects" id="projects">
           <motion.div
             className="section-head"
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewport}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.45 }}
           >
             <p className="eyebrow">CURRENT SHOWCASE</p>
             <h2>Selected ERA1 companies presented on grencape.xyz</h2>
@@ -222,10 +224,10 @@ function App() {
               <motion.article
                 key={project.name}
                 className="project-item"
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewport}
-                transition={{ duration: 0.35, delay: index * 0.03 }}
+                transition={{ duration: 0.25, delay: index * 0.02 }}
               >
                 <p className="project-stage">{project.stage}</p>
                 <h3>{project.name}</h3>
@@ -239,10 +241,10 @@ function App() {
         <section className="section section-manifesto" id="manifesto">
           <motion.div
             className="manifesto-grid"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewport}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.45 }}
           >
             <div>
               <p className="eyebrow">MANIFESTO</p>
@@ -259,10 +261,10 @@ function App() {
         <section className="section section-roadmap">
           <motion.div
             className="section-head"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewport}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.45 }}
           >
             <p className="eyebrow">ROADMAP SIGNAL</p>
             <h2>From AI core to integrated concern execution.</h2>
@@ -271,17 +273,17 @@ function App() {
             <article>
               <p>Phase 01</p>
               <h3>Build the model + data nucleus</h3>
-              <span>AIS AI · Semanta AI · Gamma AI Hedge Fund</span>
+              <span>AIS AI Â· Semanta AI Â· Gamma AI Hedge Fund</span>
             </article>
             <article>
               <p>Phase 02</p>
               <h3>Scale infrastructure and analytics fabric</h3>
-              <span>ERA Cloud · ERA DB · ERA Prism Data</span>
+              <span>ERA Cloud Â· ERA DB Â· ERA Prism Data</span>
             </article>
             <article>
               <p>Phase 03</p>
               <h3>Ship consumer and fintech surfaces</h3>
-              <span>SomeBox · One Browser · Quantum Messenger · Mind Music · ERA Pay · MoneyOne</span>
+              <span>SomeBox Â· One Browser Â· Quantum Messenger Â· Mind Music Â· ERA Pay Â· MoneyOne</span>
             </article>
           </div>
         </section>
@@ -289,16 +291,14 @@ function App() {
         <section className="section section-contact" id="contact">
           <motion.div
             className="contact-box"
-            initial={{ opacity: 0, scale: 0.985 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={viewport}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.4 }}
           >
             <p className="eyebrow">CONTACT</p>
             <h2>Build with Grencape and ERA1.</h2>
-            <p>
-              We are open to strategic partners, investors and enterprise collaborations.
-            </p>
+            <p>We are open to strategic partners, investors and enterprise collaborations.</p>
             <a className="btn btn-primary" href="mailto:hello@grencape.xyz">
               hello@grencape.xyz
             </a>
