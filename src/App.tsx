@@ -20,8 +20,8 @@ const layers = [
   },
   {
     title: 'Data / Analytics',
-    projects: ['ERA Prism Data'],
-    note: 'Operational analytics layer with decision-grade observability.'
+    projects: ['ERA Prism Studio - Data Scinece Studio'],
+    note: 'Operational analytics layer with decision-grade observability. Unified data and science workflows in one studio.'
   },
   {
     title: 'Consumer / Platform',
@@ -67,9 +67,9 @@ const projects: Project[] = [
     stage: 'Infra'
   },
   {
-    name: 'ERA Prism Data',
+    name: 'ERA Prism Studio - Data Scinece Studio',
     category: 'Analytics',
-    role: 'Data and analytics layer for strategic and operational intelligence.',
+    role: 'Unified data and science studio for strategic and operational intelligence in one product.',
     stage: 'Data'
   },
   {
@@ -278,7 +278,7 @@ function App() {
             <article>
               <p>Phase 02</p>
               <h3>Scale infrastructure and analytics fabric</h3>
-              <span>ERA Cloud · ERA DB · ERA Prism Data</span>
+              <span>ERA Cloud · ERA DB · ERA Prism Studio - Data Scinece Studio</span>
             </article>
             <article>
               <p>Phase 03</p>
@@ -310,3 +310,4 @@ function App() {
 }
 
 export default App;
+
