@@ -121,8 +121,7 @@ function App() {
       <header className="topbar">
         <div className="topbar-inner">
           <a className="brand" href="#top" aria-label="Grencape home">
-            <span className="brand-mark" aria-hidden="true">G</span>
-            <span>Grencape</span>
+            <img className="brand-logo" src="/brand/grencape-wordmark-light.png" alt="Grencape" />
           </a>
           <nav className="topnav" aria-label="Primary">
             <a href="#layers">Architecture</a>
