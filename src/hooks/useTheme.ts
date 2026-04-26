@@ -4,14 +4,10 @@ import type { ThemeName } from '../visuals/scenes';
 const STORAGE_KEY = 'grencape-theme';
 
 export function useTheme() {
-  const [theme, setTheme] = useState<ThemeName>('light');
-
-  useEffect(() => {
+  const [theme, setTheme] = useState<ThemeName>(() => {
     const saved = localStorage.getItem(STORAGE_KEY) as ThemeName | null;
-    if (saved === 'light' || saved === 'dark') {
-      setTheme(saved);
-    }
-  }, []);
+    return saved === 'light' || saved === 'dark' ? saved : 'light';
+  });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);

@@ -1,4 +1,4 @@
-﻿import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 type Project = {
   name: string;
@@ -11,27 +11,27 @@ const layers = [
   {
     title: 'Core Intelligence',
     projects: ['AIS AI', 'Semanta AI', 'Gamma AI Hedge Fund'],
-    note: 'Model intelligence, data engineering and autonomous capital logic.'
+    note: 'Foundation models, data generation and autonomous financial intelligence.'
   },
   {
     title: 'Core Infrastructure',
     projects: ['ERA Cloud', 'ERA DB'],
-    note: 'Compute routing, data control plane and unified storage backbone.'
+    note: 'Compute, inference, storage and unified data control plane.'
   },
   {
     title: 'Data / Analytics',
     projects: ['ERA Prism Studio - Data Scinece Studio'],
-    note: 'Operational analytics layer with decision-grade observability. Unified data and science workflows in one studio.'
+    note: 'Decision-grade observability and data science workflows in one studio.'
   },
   {
     title: 'Consumer / Platform',
     projects: ['SomeBox', 'One Browser', 'Quantum Messenger', 'Mind Music'],
-    note: 'Mass products where ERA1 intelligence becomes daily experience.'
+    note: 'Daily products where ERA1 intelligence becomes practical user value.'
   },
   {
     title: 'Fintech',
     projects: ['ERA Pay', 'MoneyOne'],
-    note: 'Payments and transfers stack for cross-border and everyday rails.'
+    note: 'Payments and transfer rails for consumer and business transactions.'
   }
 ];
 
@@ -69,7 +69,7 @@ const projects: Project[] = [
   {
     name: 'ERA Prism Studio - Data Scinece Studio',
     category: 'Analytics',
-    role: 'Unified data and science studio for strategic and operational intelligence in one product.',
+    role: 'Unified data and science studio for strategic and operational intelligence.',
     stage: 'Data'
   },
   {
@@ -105,7 +105,7 @@ const projects: Project[] = [
   {
     name: 'MoneyOne',
     category: 'Fintech / Transfers',
-    role: 'P2P and C2C transfer product (previously SendMe).',
+    role: 'P2P and C2C transfer product.',
     stage: 'Fintech'
   }
 ];
@@ -120,14 +120,14 @@ function App() {
     <div className="app-shell">
       <header className="topbar">
         <div className="topbar-inner">
-          <a className="brand" href="#top">
-            <span className="brand-mark" aria-hidden="true" />
-            <span className="brand-text">Grencape</span>
+          <a className="brand" href="#top" aria-label="Grencape home">
+            <span className="brand-mark" aria-hidden="true">G</span>
+            <span>Grencape</span>
           </a>
           <nav className="topnav" aria-label="Primary">
-            <a href="#layers">Layers</a>
-            <a href="#projects">Projects</a>
-            <a href="#manifesto">Manifesto</a>
+            <a href="#layers">Architecture</a>
+            <a href="#projects">Companies</a>
+            <a href="#manifesto">Thesis</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
@@ -136,10 +136,8 @@ function App() {
       <main id="top">
         <section className="hero">
           <motion.div
-            className="hero-content"
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            className="hero-copy"
+            initial={false}
           >
             <p className="eyebrow">GRENCAPE PRESENTS</p>
             <h1>
@@ -147,33 +145,41 @@ function App() {
               <span>Technology Concern Architecture</span>
             </h1>
             <p className="hero-lead">
-              Grencape is building ERA1 as a structured ecosystem where intelligence, infrastructure and
-              financial rails operate as one integrated system.
+              ERA1 is the operating architecture of Grencape: a focused system of AI, infrastructure,
+              analytics, consumer platforms and financial rails built to compound into one concern.
             </p>
             <div className="hero-actions">
-              <a href="#projects" className="btn btn-primary">
-                Explore Projects
-              </a>
-              <a href="#contact" className="btn btn-ghost">
-                Partner With Grencape
-              </a>
+              <a href="#projects" className="btn btn-primary">Explore the portfolio</a>
+              <a href="mailto:hello@grencape.xyz" className="btn btn-ghost">Start a conversation</a>
             </div>
           </motion.div>
 
-          <div className="hero-executive">
-            <div className="exec-item">
-              <p>Active initiatives</p>
-              <strong>12</strong>
+          <motion.div
+            className="architecture-model"
+            initial={false}
+            aria-label="ERA1 architecture layers"
+          >
+            <div className="model-floor">
+              <span>AI</span>
+              <strong>Intelligence Layer</strong>
             </div>
-            <div className="exec-item">
-              <p>Strategic layers</p>
-              <strong>5</strong>
+            <div className="model-floor">
+              <span>INFRA</span>
+              <strong>Cloud, DB, Capacity</strong>
             </div>
-            <div className="exec-item">
-              <p>Focus domains</p>
-              <strong>AI, Infrastructure, Fintech</strong>
+            <div className="model-floor">
+              <span>DATA</span>
+              <strong>Prism Studio</strong>
             </div>
-          </div>
+            <div className="model-floor">
+              <span>FINTECH</span>
+              <strong>Payments, Transfers</strong>
+            </div>
+            <div className="model-base">
+              <p>AI. Infrastructure. Fintech.</p>
+              <strong>12 active initiatives across 5 strategic layers</strong>
+            </div>
+          </motion.div>
         </section>
 
         <section className="section section-layers" id="layers">
@@ -185,7 +191,7 @@ function App() {
             transition={{ duration: 0.45 }}
           >
             <p className="eyebrow">ERA1 ARCHITECTURE</p>
-            <h2>One concern, five layers, one operating logic.</h2>
+            <h2>Integrated layers. Compounding impact.</h2>
           </motion.div>
           <div className="layer-list">
             {layers.map((layer, index) => (
@@ -217,7 +223,7 @@ function App() {
             transition={{ duration: 0.45 }}
           >
             <p className="eyebrow">CURRENT SHOWCASE</p>
-            <h2>Selected ERA1 companies presented on grencape.xyz</h2>
+            <h2>Companies and products currently presented by Grencape.</h2>
           </motion.div>
           <div className="project-grid">
             {projects.map((project, index) => (
@@ -247,13 +253,13 @@ function App() {
             transition={{ duration: 0.45 }}
           >
             <div>
-              <p className="eyebrow">MANIFESTO</p>
-              <h2>We design systems that scale from model intelligence to real-world transactions.</h2>
+              <p className="eyebrow">THESIS</p>
+              <h2>ERA1 is built as a concern, not a collection of disconnected startups.</h2>
             </div>
             <ul>
-              <li>Intelligence is native: every product receives AI at core level.</li>
-              <li>Infrastructure is sovereign: data, compute and control stay unified.</li>
-              <li>Execution is global: fintech rails connect people, businesses and capital.</li>
+              <li>Intelligence is native: model systems and data factories sit at the core.</li>
+              <li>Infrastructure is shared: compute, storage and data control compound across products.</li>
+              <li>Execution is commercial: consumer and fintech layers turn capability into market surface.</li>
             </ul>
           </motion.div>
         </section>
@@ -272,7 +278,7 @@ function App() {
           <div className="roadmap-grid">
             <article>
               <p>Phase 01</p>
-              <h3>Build the model + data nucleus</h3>
+              <h3>Build the model and data nucleus</h3>
               <span>AIS AI · Semanta AI · Gamma AI Hedge Fund</span>
             </article>
             <article>
@@ -299,9 +305,7 @@ function App() {
             <p className="eyebrow">CONTACT</p>
             <h2>Build with Grencape and ERA1.</h2>
             <p>We are open to strategic partners, investors and enterprise collaborations.</p>
-            <a className="btn btn-primary" href="mailto:hello@grencape.xyz">
-              hello@grencape.xyz
-            </a>
+            <a className="btn btn-primary" href="mailto:hello@grencape.xyz">hello@grencape.xyz</a>
           </motion.div>
         </section>
       </main>
@@ -310,4 +314,3 @@ function App() {
 }
 
 export default App;
-

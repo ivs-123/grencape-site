@@ -52,7 +52,7 @@ export function Contact({ reducedMotion, linkedInUrl, formspreeUrl, corpEmail }:
       }
       setStatus('sent');
       form.reset();
-    } catch (error) {
+    } catch {
       setStatus('error');
     }
   };
