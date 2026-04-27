@@ -124,10 +124,13 @@ function App() {
             <img className="brand-logo" src="/brand/grencape-wordmark-light.png" alt="Grencape" />
           </a>
           <nav className="topnav" aria-label="Primary">
-            <a href="#layers">Architecture</a>
-            <a href="#projects">Companies</a>
-            <a href="#manifesto">Thesis</a>
-            <a href="#contact">Contact</a>
+            <a href="#manifesto">About</a>
+            <a href="#layers">Platform</a>
+            <a href="#projects">Ecosystem</a>
+            <a href="#contact">Investors</a>
+            <a href="#contact">Careers</a>
+            <a href="#manifesto">Insights</a>
+            <a className="nav-contact" href="#contact">Contact</a>
           </nav>
         </div>
       </header>
@@ -143,9 +146,10 @@ function App() {
               ERA1
               <span>Technology Concern Architecture</span>
             </h1>
+            <p className="hero-kicker">AI. Infrastructure. Fintech.</p>
             <p className="hero-lead">
-              ERA1 is the operating architecture of Grencape: a focused system of AI, infrastructure,
-              analytics, consumer platforms and financial rails built to compound into one concern.
+              ERA1 is the operating architecture of Grencape - uniting artificial intelligence,
+              infrastructure, and financial technology to build enduring value across the digital economy.
             </p>
             <div className="hero-actions">
               <a href="#projects" className="btn btn-primary">Explore the portfolio</a>
@@ -154,30 +158,11 @@ function App() {
           </motion.div>
 
           <motion.div
-            className="architecture-model"
+            className="hero-visual"
             initial={false}
-            aria-label="ERA1 architecture layers"
+            aria-label="ERA1 glass architecture visual"
           >
-            <div className="model-floor">
-              <span>AI</span>
-              <strong>Intelligence Layer</strong>
-            </div>
-            <div className="model-floor">
-              <span>INFRA</span>
-              <strong>Cloud, DB, Capacity</strong>
-            </div>
-            <div className="model-floor">
-              <span>DATA</span>
-              <strong>Prism Studio</strong>
-            </div>
-            <div className="model-floor">
-              <span>FINTECH</span>
-              <strong>Payments, Transfers</strong>
-            </div>
-            <div className="model-base">
-              <p>AI. Infrastructure. Fintech.</p>
-              <strong>12 active initiatives across 5 strategic layers</strong>
-            </div>
+            <img src="/brand/era1-architecture-visual.png" alt="" />
           </motion.div>
         </section>
 
@@ -278,17 +263,17 @@ function App() {
             <article>
               <p>Phase 01</p>
               <h3>Build the model and data nucleus</h3>
-              <span>AIS AI · Semanta AI · Gamma AI Hedge Fund</span>
+              <span>AIS AI / Semanta AI / Gamma AI Hedge Fund</span>
             </article>
             <article>
               <p>Phase 02</p>
               <h3>Scale infrastructure and analytics fabric</h3>
-              <span>ERA Cloud · ERA DB · ERA Prism Studio - Data Scinece Studio</span>
+              <span>ERA Cloud / ERA DB / ERA Prism Studio - Data Scinece Studio</span>
             </article>
             <article>
               <p>Phase 03</p>
               <h3>Ship consumer and fintech surfaces</h3>
-              <span>SomeBox · One Browser · Quantum Messenger · Mind Music · ERA Pay · MoneyOne</span>
+              <span>SomeBox / One Browser / Quantum Messenger / Mind Music / ERA Pay / MoneyOne</span>
             </article>
           </div>
         </section>
@@ -313,3 +298,4 @@ function App() {
 }
 
 export default App;
+
