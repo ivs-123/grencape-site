@@ -5,6 +5,9 @@ type Project = {
   category: string;
   role: string;
   stage: string;
+  layer: string;
+  href: string;
+  signal: string;
 };
 
 const layers = [
@@ -20,7 +23,7 @@ const layers = [
   },
   {
     title: 'Data / Analytics',
-    projects: ['ERA Prism Studio - Data Scinece Studio'],
+    projects: ['ERA Prism Studio - Data Science Studio'],
     note: 'Decision-grade observability and data science workflows in one studio.'
   },
   {
@@ -40,73 +43,109 @@ const projects: Project[] = [
     name: 'AIS AI',
     category: 'AI / Intelligence',
     role: 'Own family of ERA1 foundation models and orchestration logic.',
-    stage: 'Core'
+    stage: 'Core',
+    layer: 'Core Intelligence',
+    href: 'https://ais-ai.grencape.xyz',
+    signal: 'Model nucleus'
   },
   {
     name: 'Semanta AI',
     category: 'AI / Data Factory',
     role: 'Synthetic data, fine-tuning workflows, standards and world simulation.',
-    stage: 'Build'
+    stage: 'Build',
+    layer: 'Core Intelligence',
+    href: 'https://semanta.grencape.xyz',
+    signal: 'Data factory'
   },
   {
     name: 'Gamma AI Hedge Fund',
     category: 'AI / Finance',
     role: 'Forecasting, signals and autonomous execution with strict risk logic.',
-    stage: 'Capital'
+    stage: 'Capital',
+    layer: 'Core Intelligence',
+    href: 'https://gamma.grencape.xyz',
+    signal: 'Autonomous markets'
   },
   {
     name: 'ERA Cloud',
     category: 'Infrastructure',
     role: 'Control plane for compute, inference, storage and server capacity.',
-    stage: 'Infra'
+    stage: 'Infra',
+    layer: 'Core Infrastructure',
+    href: 'https://cloud.grencape.xyz',
+    signal: 'Capacity router'
   },
   {
     name: 'ERA DB',
     category: 'Infrastructure / Data',
     role: 'Unified PostgreSQL + ClickHouse platform with bridge and AI gateway.',
-    stage: 'Infra'
+    stage: 'Infra',
+    layer: 'Core Infrastructure',
+    href: 'https://db.grencape.xyz',
+    signal: 'Unified data plane'
   },
   {
-    name: 'ERA Prism Studio - Data Scinece Studio',
+    name: 'ERA Prism Studio',
     category: 'Analytics',
-    role: 'Unified data and science studio for strategic and operational intelligence.',
-    stage: 'Data'
+    role: 'Data Science Studio for strategic analytics, observability and decision workflows.',
+    stage: 'Data',
+    layer: 'Data / Analytics',
+    href: 'https://prism.grencape.xyz',
+    signal: 'Decision studio'
   },
   {
     name: 'SomeBox',
     category: 'Consumer / Platform',
     role: 'Cloud sharing system for frictionless file distribution.',
-    stage: 'Product'
+    stage: 'Product',
+    layer: 'Consumer / Platform',
+    href: 'https://somebox.grencape.xyz',
+    signal: 'Sharing surface'
   },
   {
     name: 'One Browser',
     category: 'Consumer / Platform',
     role: 'AI-native browser with permanent free VPN experience.',
-    stage: 'Product'
+    stage: 'Product',
+    layer: 'Consumer / Platform',
+    href: 'https://onebrowser.grencape.xyz',
+    signal: 'AI web gateway'
   },
   {
     name: 'Quantum Messenger',
     category: 'Consumer / Security',
     role: 'Protected messenger for next-generation private communication.',
-    stage: 'Product'
+    stage: 'Product',
+    layer: 'Consumer / Platform',
+    href: 'https://quantum.grencape.xyz',
+    signal: 'Private network'
   },
   {
     name: 'Mind Music',
     category: 'Consumer / Experimental',
     role: 'Playlist generation by mood and voice intent description.',
-    stage: 'Lab'
+    stage: 'Lab',
+    layer: 'Consumer / Platform',
+    href: 'https://mindmusic.grencape.xyz',
+    signal: 'Mood interface'
   },
   {
     name: 'ERA Pay',
     category: 'Fintech / Payments',
     role: 'Payment gateway and financial infrastructure layer.',
-    stage: 'Fintech'
+    stage: 'Fintech',
+    layer: 'Fintech',
+    href: 'https://pay.grencape.xyz',
+    signal: 'Payment rails'
   },
   {
     name: 'MoneyOne',
     category: 'Fintech / Transfers',
     role: 'P2P and C2C transfer product.',
-    stage: 'Fintech'
+    stage: 'Fintech',
+    layer: 'Fintech',
+    href: 'https://moneyone.grencape.xyz',
+    signal: 'Transfer product'
   }
 ];
 
@@ -200,30 +239,52 @@ function App() {
 
         <section className="section section-projects" id="projects">
           <motion.div
-            className="section-head"
+            className="section-head project-showcase-head"
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewport}
             transition={{ duration: 0.45 }}
           >
-            <p className="eyebrow">CURRENT SHOWCASE</p>
-            <h2>Companies and products currently presented by Grencape.</h2>
+            <div>
+              <p className="eyebrow">ERA1 PORTFOLIO</p>
+              <h2>One concern. Twelve project banners ready to become standalone sites.</h2>
+            </div>
+            <p>
+              Each banner is structured as a brand entry point: clear role, strategic layer and a direct
+              website link for the dedicated product surface.
+            </p>
           </motion.div>
-          <div className="project-grid">
+          <div className="project-banner-grid">
             {projects.map((project, index) => (
-              <motion.article
+              <motion.a
                 key={project.name}
-                className="project-item"
+                className="project-banner"
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={viewport}
-                transition={{ duration: 0.25, delay: index * 0.02 }}
+                transition={{ duration: 0.28, delay: index * 0.025 }}
               >
-                <p className="project-stage">{project.stage}</p>
-                <h3>{project.name}</h3>
-                <p className="project-category">{project.category}</p>
-                <p className="project-role">{project.role}</p>
-              </motion.article>
+                <span className="project-banner-orbit" aria-hidden="true" />
+                <span className="project-banner-topline">
+                  <span>{project.stage}</span>
+                  <span>{project.layer}</span>
+                </span>
+                <span className="project-banner-main">
+                  <span>
+                    <strong>{project.name}</strong>
+                    <em>{project.category}</em>
+                  </span>
+                  <span className="project-banner-link">Open site</span>
+                </span>
+                <span className="project-banner-role">{project.role}</span>
+                <span className="project-banner-footer">
+                  <span>{project.signal}</span>
+                  <span>{project.href.replace('https://', '')}</span>
+                </span>
+              </motion.a>
             ))}
           </div>
         </section>
@@ -268,7 +329,7 @@ function App() {
             <article>
               <p>Phase 02</p>
               <h3>Scale infrastructure and analytics fabric</h3>
-              <span>ERA Cloud / ERA DB / ERA Prism Studio - Data Scinece Studio</span>
+              <span>ERA Cloud / ERA DB / ERA Prism Studio - Data Science Studio</span>
             </article>
             <article>
               <p>Phase 03</p>

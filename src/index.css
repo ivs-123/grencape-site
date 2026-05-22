@@ -346,59 +346,197 @@ a {
   font-weight: 600;
 }
 
-.project-grid {
-  margin-top: 2.4rem;
+.project-showcase-head {
+  max-width: none;
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: minmax(0, 0.98fr) minmax(19rem, 0.52fr);
+  gap: 3rem;
+  align-items: end;
 }
 
-.project-item {
-  grid-column: span 4;
+.project-showcase-head p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+.project-banner-grid {
+  margin-top: 2.7rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.project-banner {
+  grid-column: span 6;
   min-width: 0;
-  min-height: 14rem;
-  padding: 1.25rem;
+  min-height: 16.4rem;
+  padding: 1.35rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
   border: 1px solid rgba(20, 35, 27, 0.12);
   background:
-    linear-gradient(180deg, rgba(255, 253, 248, 0.86), rgba(245, 241, 233, 0.7)),
-    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5));
-  box-shadow: 0 18px 44px rgba(28, 39, 34, 0.06);
+    linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(244, 240, 230, 0.78)),
+    radial-gradient(circle at 84% 12%, rgba(170, 117, 56, 0.18), transparent 14rem);
+  box-shadow: 0 20px 54px rgba(28, 39, 34, 0.065);
+  isolation: isolate;
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.project-item:hover {
-  transform: translateY(-3px);
-  border-color: rgba(15, 91, 61, 0.22);
-  box-shadow: 0 24px 54px rgba(28, 39, 34, 0.1);
+.project-banner:nth-child(4n + 1),
+.project-banner:nth-child(4n + 4) {
+  grid-column: span 7;
 }
 
-.project-stage {
-  margin: 0;
+.project-banner:nth-child(4n + 2),
+.project-banner:nth-child(4n + 3) {
+  grid-column: span 5;
+}
+
+.project-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(15, 91, 61, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(15, 91, 61, 0.055) 1px, transparent 1px);
+  background-size: 4.25rem 4.25rem;
+  mask-image: linear-gradient(90deg, transparent 0%, black 42%, black 100%);
+  opacity: 0.58;
+  z-index: -2;
+}
+
+.project-banner::after {
+  content: '';
+  position: absolute;
+  inset: auto -12% -34% 45%;
+  height: 12rem;
+  background: radial-gradient(circle, rgba(10, 61, 43, 0.18), transparent 68%);
+  filter: blur(20px);
+  z-index: -1;
+}
+
+.project-banner:hover {
+  transform: translateY(-4px);
+  border-color: rgba(15, 91, 61, 0.26);
+  box-shadow: 0 28px 70px rgba(28, 39, 34, 0.11);
+}
+
+.project-banner:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+
+.project-banner-orbit {
+  position: absolute;
+  right: 1.15rem;
+  top: 1.2rem;
+  width: 6.5rem;
+  height: 6.5rem;
+  border: 1px solid rgba(170, 117, 56, 0.28);
+  border-radius: 50%;
+  opacity: 0.82;
+}
+
+.project-banner-orbit::before,
+.project-banner-orbit::after {
+  content: '';
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px solid rgba(15, 91, 61, 0.16);
+  border-radius: 50%;
+}
+
+.project-banner-orbit::after {
+  inset: 2.45rem;
+  background: var(--copper);
+  border: 0;
+  box-shadow: 0 0 0 0.55rem rgba(170, 117, 56, 0.12);
+}
+
+.project-banner-topline,
+.project-banner-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
   color: var(--copper);
-  font-size: 0.72rem;
   font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
 }
 
-.project-item h3 {
-  margin: 0.65rem 0 0.35rem;
+.project-banner-topline span + span,
+.project-banner-footer span + span {
+  color: rgba(20, 35, 27, 0.48);
+}
+
+.project-banner-main {
+  margin-top: 2.4rem;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.project-banner-main strong {
+  display: block;
+  max-width: 27rem;
   color: var(--green-deep);
-  font-size: 1.2rem;
-  line-height: 1.16;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
   overflow-wrap: anywhere;
 }
 
-.project-category {
-  margin: 0;
+.project-banner-main em {
+  display: block;
+  margin-top: 0.65rem;
   color: var(--green);
-  font-size: 0.9rem;
+  font-style: normal;
   font-weight: 700;
 }
 
-.project-role {
-  margin: 0.75rem 0 0;
+.project-banner-link {
+  min-width: max-content;
+  min-height: 2.55rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  background: rgba(10, 61, 43, 0.94);
+  color: #fffdf8;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(10, 61, 43, 0.16);
+}
+
+.project-banner-link::after {
+  content: '->';
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+}
+
+.project-banner-role {
+  margin-top: 1.2rem;
+  display: block;
+  max-width: 34rem;
   color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.project-banner-footer {
+  margin-top: 1.6rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(20, 35, 27, 0.12);
+  justify-content: space-between;
 }
 
 .manifesto-grid {
@@ -541,7 +679,16 @@ a {
     margin-top: 0;
   }
 
-  .project-item {
+  .project-showcase-head {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .project-banner,
+  .project-banner:nth-child(4n + 1),
+  .project-banner:nth-child(4n + 2),
+  .project-banner:nth-child(4n + 3),
+  .project-banner:nth-child(4n + 4) {
     grid-column: span 6;
   }
 }
@@ -622,7 +769,11 @@ a {
     grid-column: auto;
   }
 
-  .project-item {
+  .project-banner,
+  .project-banner:nth-child(4n + 1),
+  .project-banner:nth-child(4n + 2),
+  .project-banner:nth-child(4n + 3),
+  .project-banner:nth-child(4n + 4) {
     grid-column: span 12;
   }
 }
@@ -648,6 +799,32 @@ a {
 
   .section h2 {
     font-size: 2.55rem;
+  }
+
+  .project-banner {
+    min-height: 17.5rem;
+    padding: 1.05rem;
+  }
+
+  .project-banner-main {
+    margin-top: 2rem;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-banner-main strong {
+    font-size: 2.25rem;
+  }
+
+  .project-banner-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .project-banner-footer {
+    display: grid;
+    gap: 0.35rem;
   }
 
   .layer-row {
