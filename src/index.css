@@ -138,9 +138,9 @@ a {
 
 .hero {
   width: min(1370px, 94vw);
-  min-height: 100svh;
+  min-height: min(92svh, 58rem);
   margin: 0 auto;
-  padding-top: 8.1rem;
+  padding-top: 7.4rem;
   padding-bottom: 4.2rem;
   display: grid;
   grid-template-columns: minmax(0, 0.78fr) minmax(600px, 1.22fr);
@@ -307,6 +307,10 @@ a {
   letter-spacing: -0.035em;
 }
 
+.title-mobile {
+  display: none;
+}
+
 .layer-list {
   display: grid;
   gap: 0;
@@ -354,6 +358,14 @@ a {
   align-items: end;
 }
 
+.project-showcase-head > * {
+  min-width: 0;
+}
+
+.project-showcase-head h2 {
+  overflow-wrap: break-word;
+}
+
 .project-showcase-head p:last-child {
   margin: 0;
   color: var(--muted);
@@ -361,14 +373,61 @@ a {
   line-height: 1.7;
 }
 
+.portfolio-meta {
+  margin-top: 2.2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  align-items: stretch;
+  border: 1px solid rgba(20, 35, 27, 0.11);
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.9), rgba(246, 242, 233, 0.76)),
+    radial-gradient(circle at 78% 10%, rgba(170, 117, 56, 0.16), transparent 18rem);
+  box-shadow: 0 18px 44px rgba(28, 39, 34, 0.055);
+}
+
+.portfolio-meta span,
+.portfolio-meta a {
+  min-height: 5.1rem;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.72rem;
+  border-right: 1px solid rgba(20, 35, 27, 0.1);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.portfolio-meta strong {
+  color: var(--green-deep);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.portfolio-meta a {
+  border-right: 0;
+  background: rgba(10, 61, 43, 0.96);
+  color: #fffdf8;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.portfolio-meta a::after {
+  content: '->';
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+}
+
 .project-banner-grid {
   margin-top: 2.7rem;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 0.9rem;
+  gap: 1rem;
 }
 
 .project-banner {
+  --banner-accent: var(--copper);
   grid-column: span 6;
   min-width: 0;
   min-height: 16.4rem;
@@ -381,10 +440,30 @@ a {
   border: 1px solid rgba(20, 35, 27, 0.12);
   background:
     linear-gradient(135deg, rgba(255, 253, 248, 0.94), rgba(244, 240, 230, 0.78)),
-    radial-gradient(circle at 84% 12%, rgba(170, 117, 56, 0.18), transparent 14rem);
+    radial-gradient(circle at 84% 12%, color-mix(in srgb, var(--banner-accent) 18%, transparent), transparent 14rem);
   box-shadow: 0 20px 54px rgba(28, 39, 34, 0.065);
   isolation: isolate;
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.project-banner-core-intelligence {
+  --banner-accent: #9c6b2f;
+}
+
+.project-banner-core-infrastructure {
+  --banner-accent: #0f6a4a;
+}
+
+.project-banner-data-analytics {
+  --banner-accent: #536f7a;
+}
+
+.project-banner-consumer-platform {
+  --banner-accent: #bb7a41;
+}
+
+.project-banner-fintech {
+  --banner-accent: #0a3d2b;
 }
 
 .project-banner:nth-child(4n + 1),
@@ -437,7 +516,7 @@ a {
   top: 1.2rem;
   width: 6.5rem;
   height: 6.5rem;
-  border: 1px solid rgba(170, 117, 56, 0.28);
+  border: 1px solid color-mix(in srgb, var(--banner-accent) 34%, transparent);
   border-radius: 50%;
   opacity: 0.82;
 }
@@ -453,9 +532,9 @@ a {
 
 .project-banner-orbit::after {
   inset: 2.45rem;
-  background: var(--copper);
+  background: var(--banner-accent);
   border: 0;
-  box-shadow: 0 0 0 0.55rem rgba(170, 117, 56, 0.12);
+  box-shadow: 0 0 0 0.55rem color-mix(in srgb, var(--banner-accent) 14%, transparent);
 }
 
 .project-banner-topline,
@@ -463,7 +542,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem 1rem;
-  color: var(--copper);
+  color: var(--banner-accent);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.72rem;
   font-weight: 600;
@@ -483,6 +562,10 @@ a {
   gap: 1.5rem;
 }
 
+.project-banner-main > span:first-child {
+  min-width: 0;
+}
+
 .project-banner-main strong {
   display: block;
   max-width: 27rem;
@@ -498,7 +581,7 @@ a {
 .project-banner-main em {
   display: block;
   margin-top: 0.65rem;
-  color: var(--green);
+  color: color-mix(in srgb, var(--banner-accent) 72%, var(--green));
   font-style: normal;
   font-weight: 700;
 }
@@ -530,6 +613,7 @@ a {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.62;
+  overflow-wrap: anywhere;
 }
 
 .project-banner-footer {
@@ -537,6 +621,11 @@ a {
   padding-top: 0.95rem;
   border-top: 1px solid rgba(20, 35, 27, 0.12);
   justify-content: space-between;
+}
+
+.project-banner-footer span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .manifesto-grid {
@@ -684,6 +773,15 @@ a {
     gap: 1.2rem;
   }
 
+  .portfolio-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-meta a {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(20, 35, 27, 0.1);
+  }
+
   .project-banner,
   .project-banner:nth-child(4n + 1),
   .project-banner:nth-child(4n + 2),
@@ -776,6 +874,21 @@ a {
   .project-banner:nth-child(4n + 4) {
     grid-column: span 12;
   }
+
+  .portfolio-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-meta span,
+  .portfolio-meta a {
+    min-height: 4.4rem;
+    border-right: 0;
+    border-bottom: 1px solid rgba(20, 35, 27, 0.1);
+  }
+
+  .portfolio-meta a {
+    border-bottom: 0;
+  }
 }
 
 @media (max-width: 560px) {
@@ -801,9 +914,31 @@ a {
     font-size: 2.55rem;
   }
 
+  .project-showcase-head h2 {
+    max-width: 22rem;
+    font-size: 2.2rem;
+    line-height: 1.04;
+  }
+
+  .title-desktop {
+    display: none;
+  }
+
+  .title-mobile {
+    display: inline;
+  }
+
+  .project-showcase-head p:last-child {
+    max-width: 21rem;
+  }
+
   .project-banner {
     min-height: 17.5rem;
     padding: 1.05rem;
+  }
+
+  .portfolio-meta strong {
+    font-size: 2rem;
   }
 
   .project-banner-main {

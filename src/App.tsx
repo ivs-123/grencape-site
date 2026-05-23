@@ -247,18 +247,48 @@ function App() {
           >
             <div>
               <p className="eyebrow">ERA1 PORTFOLIO</p>
-              <h2>One concern. Twelve project banners ready to become standalone sites.</h2>
+              <h2>
+                <span className="title-desktop">One concern. Twelve project banners ready to become standalone sites.</span>
+                <span className="title-mobile">
+                  One concern.
+                  <br />
+                  Twelve project banners.
+                  <br />
+                  Standalone sites.
+                </span>
+              </h2>
             </div>
             <p>
               Each banner is structured as a brand entry point: clear role, strategic layer and a direct
               website link for the dedicated product surface.
             </p>
           </motion.div>
+          <motion.div
+            className="portfolio-meta"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.35 }}
+          >
+            <span>
+              <strong>12</strong>
+              active initiatives
+            </span>
+            <span>
+              <strong>5</strong>
+              strategic layers
+            </span>
+            <span>
+              <strong>1</strong>
+              operating architecture
+            </span>
+            <a href="mailto:hello@grencape.xyz">Request portfolio access</a>
+          </motion.div>
           <div className="project-banner-grid">
             {projects.map((project, index) => (
               <motion.a
                 key={project.name}
-                className="project-banner"
+                className={`project-banner project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                 href={project.href}
                 target="_blank"
                 rel="noreferrer"
