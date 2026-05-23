@@ -505,6 +505,16 @@ a {
   box-shadow: 0 28px 70px rgba(28, 39, 34, 0.11);
 }
 
+.project-banner-disabled {
+  cursor: default;
+}
+
+.project-banner-disabled:hover {
+  transform: none;
+  border-color: rgba(20, 35, 27, 0.12);
+  box-shadow: 0 20px 54px rgba(28, 39, 34, 0.065);
+}
+
 .project-banner:focus-visible {
   outline: 2px solid var(--green);
   outline-offset: 4px;
@@ -552,6 +562,20 @@ a {
 .project-banner-topline span + span,
 .project-banner-footer span + span {
   color: rgba(20, 35, 27, 0.48);
+}
+
+.project-banner-status {
+  margin-left: auto;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid rgba(20, 35, 27, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.72);
+  color: rgba(20, 35, 27, 0.56) !important;
+}
+
+.project-banner-status-live {
+  border-color: rgba(15, 91, 61, 0.24);
+  color: var(--green) !important;
 }
 
 .project-banner-main {
@@ -604,6 +628,16 @@ a {
   content: '->';
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.72rem;
+}
+
+.project-banner-link-disabled {
+  background: rgba(20, 35, 27, 0.08);
+  color: rgba(20, 35, 27, 0.62);
+  box-shadow: none;
+}
+
+.project-banner-link-disabled::after {
+  content: '';
 }
 
 .project-banner-role {

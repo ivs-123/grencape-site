@@ -6,7 +6,8 @@ type Project = {
   role: string;
   stage: string;
   layer: string;
-  href: string;
+  siteUrl: string;
+  siteStatus: 'live' | 'pending';
   signal: string;
 };
 
@@ -45,7 +46,8 @@ const projects: Project[] = [
     role: 'Own family of ERA1 foundation models and orchestration logic.',
     stage: 'Core',
     layer: 'Core Intelligence',
-    href: 'https://ais-ai.grencape.xyz',
+    siteUrl: 'https://ais-ai.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Model nucleus'
   },
   {
@@ -54,7 +56,8 @@ const projects: Project[] = [
     role: 'Synthetic data, fine-tuning workflows, standards and world simulation.',
     stage: 'Build',
     layer: 'Core Intelligence',
-    href: 'https://semanta.grencape.xyz',
+    siteUrl: 'https://semanta.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Data factory'
   },
   {
@@ -63,7 +66,8 @@ const projects: Project[] = [
     role: 'Forecasting, signals and autonomous execution with strict risk logic.',
     stage: 'Capital',
     layer: 'Core Intelligence',
-    href: 'https://gamma.grencape.xyz',
+    siteUrl: 'https://gamma.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Autonomous markets'
   },
   {
@@ -72,7 +76,8 @@ const projects: Project[] = [
     role: 'Control plane for compute, inference, storage and server capacity.',
     stage: 'Infra',
     layer: 'Core Infrastructure',
-    href: 'https://cloud.grencape.xyz',
+    siteUrl: 'https://cloud.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Capacity router'
   },
   {
@@ -81,7 +86,8 @@ const projects: Project[] = [
     role: 'Unified PostgreSQL + ClickHouse platform with bridge and AI gateway.',
     stage: 'Infra',
     layer: 'Core Infrastructure',
-    href: 'https://db.grencape.xyz',
+    siteUrl: 'https://db.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Unified data plane'
   },
   {
@@ -90,7 +96,8 @@ const projects: Project[] = [
     role: 'Data Science Studio for strategic analytics, observability and decision workflows.',
     stage: 'Data',
     layer: 'Data / Analytics',
-    href: 'https://prism.grencape.xyz',
+    siteUrl: 'https://prism.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Decision studio'
   },
   {
@@ -99,7 +106,8 @@ const projects: Project[] = [
     role: 'Cloud sharing system for frictionless file distribution.',
     stage: 'Product',
     layer: 'Consumer / Platform',
-    href: 'https://somebox.grencape.xyz',
+    siteUrl: 'https://somebox.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Sharing surface'
   },
   {
@@ -108,7 +116,8 @@ const projects: Project[] = [
     role: 'AI-native browser with permanent free VPN experience.',
     stage: 'Product',
     layer: 'Consumer / Platform',
-    href: 'https://onebrowser.grencape.xyz',
+    siteUrl: 'https://onebrowser.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'AI web gateway'
   },
   {
@@ -117,7 +126,8 @@ const projects: Project[] = [
     role: 'Protected messenger for next-generation private communication.',
     stage: 'Product',
     layer: 'Consumer / Platform',
-    href: 'https://quantum.grencape.xyz',
+    siteUrl: 'https://quantum.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Private network'
   },
   {
@@ -126,7 +136,8 @@ const projects: Project[] = [
     role: 'Playlist generation by mood and voice intent description.',
     stage: 'Lab',
     layer: 'Consumer / Platform',
-    href: 'https://mindmusic.grencape.xyz',
+    siteUrl: 'https://mindmusic.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Mood interface'
   },
   {
@@ -135,7 +146,8 @@ const projects: Project[] = [
     role: 'Payment gateway and financial infrastructure layer.',
     stage: 'Fintech',
     layer: 'Fintech',
-    href: 'https://pay.grencape.xyz',
+    siteUrl: 'https://pay.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Payment rails'
   },
   {
@@ -144,7 +156,8 @@ const projects: Project[] = [
     role: 'P2P and C2C transfer product.',
     stage: 'Fintech',
     layer: 'Fintech',
-    href: 'https://moneyone.grencape.xyz',
+    siteUrl: 'https://moneyone.grencape.xyz',
+    siteStatus: 'pending',
     signal: 'Transfer product'
   }
 ];
@@ -155,6 +168,72 @@ const viewport = {
 };
 
 function App() {
+  const renderProjectBanner = (project: Project, index: number) => {
+    const bannerClass = [
+      'project-banner',
+      `project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      project.siteStatus === 'pending' ? 'project-banner-disabled' : ''
+    ].filter(Boolean).join(' ');
+
+    const bannerContent = (
+      <>
+        <span className="project-banner-orbit" aria-hidden="true" />
+        <span className="project-banner-topline">
+          <span>{project.stage}</span>
+          <span>{project.layer}</span>
+          <span className={`project-banner-status project-banner-status-${project.siteStatus}`}>
+            {project.siteStatus === 'live' ? 'Site live' : 'Info only'}
+          </span>
+        </span>
+        <span className="project-banner-main">
+          <span>
+            <strong>{project.name}</strong>
+            <em>{project.category}</em>
+          </span>
+          <span className={`project-banner-link ${project.siteStatus === 'pending' ? 'project-banner-link-disabled' : ''}`}>
+            {project.siteStatus === 'live' ? 'Open site' : 'Information'}
+          </span>
+        </span>
+        <span className="project-banner-role">{project.role}</span>
+        <span className="project-banner-footer">
+          <span>{project.signal}</span>
+          <span>{project.siteUrl.replace('https://', '')}</span>
+        </span>
+      </>
+    );
+
+    if (project.siteStatus === 'live') {
+      return (
+        <motion.a
+          key={project.name}
+          className={bannerClass}
+          href={project.siteUrl}
+          target="_blank"
+          rel="noreferrer"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: 0.28, delay: index * 0.025 }}
+        >
+          {bannerContent}
+        </motion.a>
+      );
+    }
+
+    return (
+      <motion.article
+        key={project.name}
+        className={bannerClass}
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewport}
+        transition={{ duration: 0.28, delay: index * 0.025 }}
+      >
+        {bannerContent}
+      </motion.article>
+    );
+  };
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -259,8 +338,8 @@ function App() {
               </h2>
             </div>
             <p>
-              Each banner is structured as a brand entry point: clear role, strategic layer and a direct
-              website link for the dedicated product surface.
+              Each banner is structured as a brand entry point: clear role, strategic layer and a live
+              website transition only when the dedicated product site is ready.
             </p>
           </motion.div>
           <motion.div
@@ -285,37 +364,7 @@ function App() {
             <a href="mailto:hello@grencape.xyz">Request portfolio access</a>
           </motion.div>
           <div className="project-banner-grid">
-            {projects.map((project, index) => (
-              <motion.a
-                key={project.name}
-                className={`project-banner project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewport}
-                transition={{ duration: 0.28, delay: index * 0.025 }}
-              >
-                <span className="project-banner-orbit" aria-hidden="true" />
-                <span className="project-banner-topline">
-                  <span>{project.stage}</span>
-                  <span>{project.layer}</span>
-                </span>
-                <span className="project-banner-main">
-                  <span>
-                    <strong>{project.name}</strong>
-                    <em>{project.category}</em>
-                  </span>
-                  <span className="project-banner-link">Open site</span>
-                </span>
-                <span className="project-banner-role">{project.role}</span>
-                <span className="project-banner-footer">
-                  <span>{project.signal}</span>
-                  <span>{project.href.replace('https://', '')}</span>
-                </span>
-              </motion.a>
-            ))}
+            {projects.map(renderProjectBanner)}
           </div>
         </section>
 
