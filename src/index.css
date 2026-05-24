@@ -19,6 +19,14 @@
   --navy-blue: #102a43;
   --ivory-white: #fff8ea;
   --glass-green: #2f6f62;
+  --milk-white: #fffdf4;
+  --flame-red: #c83a2b;
+  --lemon-yellow: #f2d84b;
+  --signal-orange: #e47a2e;
+  --chocolate-brown: #5a3424;
+  --rich-purple: #4b2d73;
+  --deep-teal: #0d5f68;
+  --bronze-gold: #9d6b2f;
 }
 
 * {
@@ -400,55 +408,54 @@ a {
 }
 
 .project-tile:nth-child(1) {
-  --tile-color: #0d2b45;
+  --tile-color: var(--navy-blue);
 }
 
 .project-tile:nth-child(2) {
-  --tile-color: #2f7467;
+  --tile-color: var(--ivory-white);
+  --tile-text: var(--green-deep);
 }
 
 .project-tile:nth-child(3) {
-  --tile-color: #fff8ea;
-  --tile-text: var(--green-deep);
+  --tile-color: var(--glass-green);
 }
 
 .project-tile:nth-child(4) {
-  --tile-color: #123655;
+  --tile-color: var(--flame-red);
 }
 
 .project-tile:nth-child(5) {
-  --tile-color: #3d7f72;
+  --tile-color: var(--lemon-yellow);
+  --tile-text: #2c2a16;
 }
 
 .project-tile:nth-child(6) {
-  --tile-color: #f7efd9;
-  --tile-text: var(--green-deep);
+  --tile-color: var(--signal-orange);
 }
 
 .project-tile:nth-child(7) {
-  --tile-color: #092238;
+  --tile-color: var(--chocolate-brown);
 }
 
 .project-tile:nth-child(8) {
-  --tile-color: #286a5d;
+  --tile-color: var(--rich-purple);
 }
 
 .project-tile:nth-child(9) {
-  --tile-color: #fff3df;
+  --tile-color: var(--milk-white);
   --tile-text: var(--green-deep);
 }
 
 .project-tile:nth-child(10) {
-  --tile-color: #173e5f;
+  --tile-color: var(--deep-teal);
 }
 
 .project-tile:nth-child(11) {
-  --tile-color: #35786b;
+  --tile-color: var(--bronze-gold);
 }
 
 .project-tile:nth-child(12) {
-  --tile-color: #f3ead1;
-  --tile-text: var(--green-deep);
+  --tile-color: #1d4257;
 }
 
 .project-tile span {
