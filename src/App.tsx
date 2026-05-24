@@ -33,25 +33,17 @@ function App() {
     return (
       <motion.a
         key={project.name}
-        className="project-row-card"
-        href={project.siteStatus === 'live' ? project.siteUrl : `#/projects/${project.slug}`}
-        target={project.siteStatus === 'live' ? '_blank' : undefined}
-        rel={project.siteStatus === 'live' ? 'noreferrer' : undefined}
+        className="project-tile"
+        href={project.siteUrl}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`Open ${project.name}`}
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
         transition={{ duration: 0.28, delay: index * 0.025 }}
       >
-        <span className="project-row-name">
-          <strong>{project.name}</strong>
-          <span>{project.role}</span>
-        </span>
-        <span className="project-row-meta">{project.layer}</span>
-        <span className={`project-row-status project-row-status-${project.siteStatus}`}>
-          {project.siteStatus === 'live' ? 'Live site' : 'Info only'}
-        </span>
-        <span className="project-row-domain">{project.siteUrl.replace('https://', '')}</span>
-        <span className="project-row-action">{project.siteStatus === 'live' ? 'Open' : 'View'}</span>
+        <span>{project.name}</span>
       </motion.a>
     );
   };
@@ -152,50 +144,21 @@ function App() {
             <div>
               <p className="eyebrow">ERA1 PORTFOLIO</p>
               <h2>
-                <span className="title-desktop">One concern. Twelve project entries managed as an enterprise portfolio.</span>
+                <span className="title-desktop">One concern. Twelve focused project surfaces.</span>
                 <span className="title-mobile">
                   One concern.
                   <br />
-                  Twelve project entries.
+                  Twelve project surfaces.
                   <br />
-                  Enterprise portfolio.
+                  ERA1 portfolio.
                 </span>
               </h2>
             </div>
             <p>
-              Each entry is structured as a controlled brand record: clear role, strategic layer and a live
-              website transition only when the dedicated product site is ready.
+              A minimal project grid for the ERA1 ecosystem. Each tile opens the dedicated project domain.
             </p>
           </motion.div>
-          <motion.div
-            className="portfolio-meta"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.35 }}
-          >
-            <span>
-              <strong>12</strong>
-              active initiatives
-            </span>
-            <span>
-              <strong>5</strong>
-              strategic layers
-            </span>
-            <span>
-              <strong>1</strong>
-              operating architecture
-            </span>
-            <a href="mailto:hello@grencape.xyz">Request portfolio access</a>
-          </motion.div>
-          <div className="project-index" role="list" aria-label="ERA1 project index">
-            <div className="project-index-head" aria-hidden="true">
-              <span>Project</span>
-              <span>Layer</span>
-              <span>Status</span>
-              <span>Domain</span>
-              <span>Action</span>
-            </div>
+          <div className="project-tile-grid" role="list" aria-label="ERA1 project sites">
             {projects.map(renderProjectBanner)}
           </div>
         </section>
