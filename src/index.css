@@ -505,16 +505,6 @@ a {
   box-shadow: 0 28px 70px rgba(28, 39, 34, 0.11);
 }
 
-.project-banner-disabled {
-  cursor: default;
-}
-
-.project-banner-disabled:hover {
-  transform: none;
-  border-color: rgba(20, 35, 27, 0.12);
-  box-shadow: 0 20px 54px rgba(28, 39, 34, 0.065);
-}
-
 .project-banner:focus-visible {
   outline: 2px solid var(--green);
   outline-offset: 4px;
@@ -637,7 +627,7 @@ a {
 }
 
 .project-banner-link-disabled::after {
-  content: '';
+  content: '->';
 }
 
 .project-banner-role {
@@ -731,6 +721,173 @@ a {
 
 .section-contact {
   padding-bottom: 7rem;
+}
+
+.project-detail-page {
+  padding-top: 4.8rem;
+}
+
+.project-detail-hero {
+  --banner-accent: var(--copper);
+  width: min(1220px, 92vw);
+  min-height: calc(100svh - 4.8rem);
+  margin: 0 auto;
+  padding: 5rem 0 4rem;
+  display: grid;
+  align-content: center;
+}
+
+.project-detail-kicker {
+  margin-bottom: 2.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-detail-kicker a {
+  color: var(--green);
+}
+
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.42fr);
+  gap: 3rem;
+  align-items: end;
+}
+
+.project-detail-hero h1 {
+  margin: 1rem 0 0;
+  color: var(--green-deep);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 7rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.86;
+}
+
+.project-detail-category {
+  margin: 1rem 0 0;
+  color: color-mix(in srgb, var(--banner-accent) 72%, var(--green));
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.project-detail-thesis {
+  max-width: 45rem;
+  margin: 1.4rem 0 0;
+  color: var(--muted);
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.project-detail-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.project-detail-disabled {
+  cursor: default;
+}
+
+.project-detail-card {
+  min-width: 0;
+  padding: 1.4rem;
+  border: 1px solid rgba(20, 35, 27, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, 0.95), rgba(244, 240, 230, 0.8)),
+    radial-gradient(circle at 82% 12%, color-mix(in srgb, var(--banner-accent) 18%, transparent), transparent 14rem);
+  box-shadow: 0 24px 60px rgba(28, 39, 34, 0.08);
+}
+
+.project-detail-card > span {
+  color: var(--banner-accent);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.project-detail-card strong {
+  display: block;
+  margin-top: 0.9rem;
+  color: var(--green-deep);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.project-detail-card p {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.project-detail-card dl {
+  margin: 1.4rem 0 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.project-detail-card div {
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(20, 35, 27, 0.11);
+}
+
+.project-detail-card dt {
+  color: rgba(20, 35, 27, 0.48);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.project-detail-card dd {
+  margin: 0.25rem 0 0;
+  color: var(--ink);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.project-detail-section {
+  padding-top: 5rem;
+}
+
+.project-focus-grid {
+  margin-top: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.project-focus-grid article {
+  min-height: 12rem;
+  padding: 1.2rem;
+  border: 1px solid rgba(20, 35, 27, 0.12);
+  background: rgba(255, 253, 248, 0.74);
+}
+
+.project-focus-grid span {
+  color: var(--copper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.project-focus-grid h3 {
+  margin: 1.5rem 0 0;
+  color: var(--green-deep);
+  font-size: 1.35rem;
+  line-height: 1.15;
 }
 
 .contact-box {
@@ -893,7 +1050,9 @@ a {
 
   .layer-row,
   .manifesto-grid,
-  .roadmap-grid {
+  .roadmap-grid,
+  .project-detail-grid,
+  .project-focus-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1002,6 +1161,29 @@ a {
 
   .contact-box {
     padding: 1.5rem;
+  }
+
+  .project-detail-page {
+    padding-top: 4.4rem;
+  }
+
+  .project-detail-hero {
+    width: calc(100% - 1.5rem);
+    min-height: auto;
+    padding: 4rem 0 3.2rem;
+  }
+
+  .project-detail-hero h1 {
+    font-size: 4rem;
+  }
+
+  .project-detail-thesis {
+    font-size: 1.02rem;
+  }
+
+  .project-detail-actions,
+  .project-detail-actions .btn {
+    width: 100%;
   }
 }
 

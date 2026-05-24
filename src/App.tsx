@@ -1,178 +1,38 @@
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-
-type Project = {
-  name: string;
-  category: string;
-  role: string;
-  stage: string;
-  layer: string;
-  siteUrl: string;
-  siteStatus: 'live' | 'pending';
-  signal: string;
-};
-
-const layers = [
-  {
-    title: 'Core Intelligence',
-    projects: ['AIS AI', 'Semanta AI', 'Gamma AI Hedge Fund'],
-    note: 'Foundation models, data generation and autonomous financial intelligence.'
-  },
-  {
-    title: 'Core Infrastructure',
-    projects: ['ERA Cloud', 'ERA DB'],
-    note: 'Compute, inference, storage and unified data control plane.'
-  },
-  {
-    title: 'Data / Analytics',
-    projects: ['ERA Prism Studio - Data Science Studio'],
-    note: 'Decision-grade observability and data science workflows in one studio.'
-  },
-  {
-    title: 'Consumer / Platform',
-    projects: ['SomeBox', 'One Browser', 'Quantum Messenger', 'Mind Music'],
-    note: 'Daily products where ERA1 intelligence becomes practical user value.'
-  },
-  {
-    title: 'Fintech',
-    projects: ['ERA Pay', 'MoneyOne'],
-    note: 'Payments and transfer rails for consumer and business transactions.'
-  }
-];
-
-const projects: Project[] = [
-  {
-    name: 'AIS AI',
-    category: 'AI / Intelligence',
-    role: 'Own family of ERA1 foundation models and orchestration logic.',
-    stage: 'Core',
-    layer: 'Core Intelligence',
-    siteUrl: 'https://ais-ai.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Model nucleus'
-  },
-  {
-    name: 'Semanta AI',
-    category: 'AI / Data Factory',
-    role: 'Synthetic data, fine-tuning workflows, standards and world simulation.',
-    stage: 'Build',
-    layer: 'Core Intelligence',
-    siteUrl: 'https://semanta.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Data factory'
-  },
-  {
-    name: 'Gamma AI Hedge Fund',
-    category: 'AI / Finance',
-    role: 'Forecasting, signals and autonomous execution with strict risk logic.',
-    stage: 'Capital',
-    layer: 'Core Intelligence',
-    siteUrl: 'https://gamma.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Autonomous markets'
-  },
-  {
-    name: 'ERA Cloud',
-    category: 'Infrastructure',
-    role: 'Control plane for compute, inference, storage and server capacity.',
-    stage: 'Infra',
-    layer: 'Core Infrastructure',
-    siteUrl: 'https://cloud.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Capacity router'
-  },
-  {
-    name: 'ERA DB',
-    category: 'Infrastructure / Data',
-    role: 'Unified PostgreSQL + ClickHouse platform with bridge and AI gateway.',
-    stage: 'Infra',
-    layer: 'Core Infrastructure',
-    siteUrl: 'https://db.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Unified data plane'
-  },
-  {
-    name: 'ERA Prism Studio',
-    category: 'Analytics',
-    role: 'Data Science Studio for strategic analytics, observability and decision workflows.',
-    stage: 'Data',
-    layer: 'Data / Analytics',
-    siteUrl: 'https://prism.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Decision studio'
-  },
-  {
-    name: 'SomeBox',
-    category: 'Consumer / Platform',
-    role: 'Cloud sharing system for frictionless file distribution.',
-    stage: 'Product',
-    layer: 'Consumer / Platform',
-    siteUrl: 'https://somebox.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Sharing surface'
-  },
-  {
-    name: 'One Browser',
-    category: 'Consumer / Platform',
-    role: 'AI-native browser with permanent free VPN experience.',
-    stage: 'Product',
-    layer: 'Consumer / Platform',
-    siteUrl: 'https://onebrowser.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'AI web gateway'
-  },
-  {
-    name: 'Quantum Messenger',
-    category: 'Consumer / Security',
-    role: 'Protected messenger for next-generation private communication.',
-    stage: 'Product',
-    layer: 'Consumer / Platform',
-    siteUrl: 'https://quantum.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Private network'
-  },
-  {
-    name: 'Mind Music',
-    category: 'Consumer / Experimental',
-    role: 'Playlist generation by mood and voice intent description.',
-    stage: 'Lab',
-    layer: 'Consumer / Platform',
-    siteUrl: 'https://mindmusic.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Mood interface'
-  },
-  {
-    name: 'ERA Pay',
-    category: 'Fintech / Payments',
-    role: 'Payment gateway and financial infrastructure layer.',
-    stage: 'Fintech',
-    layer: 'Fintech',
-    siteUrl: 'https://pay.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Payment rails'
-  },
-  {
-    name: 'MoneyOne',
-    category: 'Fintech / Transfers',
-    role: 'P2P and C2C transfer product.',
-    stage: 'Fintech',
-    layer: 'Fintech',
-    siteUrl: 'https://moneyone.grencape.xyz',
-    siteStatus: 'pending',
-    signal: 'Transfer product'
-  }
-];
+import { getProjectBySlug, layers, projects, type Project } from './data/projects';
 
 const viewport = {
   once: true,
   amount: 0.25
 };
 
+function getProjectRoute() {
+  const match = window.location.hash.match(/^#\/projects\/([a-z0-9-]+)$/);
+  return match?.[1] ?? null;
+}
+
 function App() {
+  const [projectSlug, setProjectSlug] = useState(() => getProjectRoute());
+  const activeProject = useMemo(
+    () => (projectSlug ? getProjectBySlug(projectSlug) : undefined),
+    [projectSlug]
+  );
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setProjectSlug(getProjectRoute());
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   const renderProjectBanner = (project: Project, index: number) => {
     const bannerClass = [
       'project-banner',
-      `project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
-      project.siteStatus === 'pending' ? 'project-banner-disabled' : ''
+      `project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
     ].filter(Boolean).join(' ');
 
     const bannerContent = (
@@ -191,7 +51,7 @@ function App() {
             <em>{project.category}</em>
           </span>
           <span className={`project-banner-link ${project.siteStatus === 'pending' ? 'project-banner-link-disabled' : ''}`}>
-            {project.siteStatus === 'live' ? 'Open site' : 'Information'}
+            {project.siteStatus === 'live' ? 'Open site' : 'View info'}
           </span>
         </span>
         <span className="project-banner-role">{project.role}</span>
@@ -202,35 +62,20 @@ function App() {
       </>
     );
 
-    if (project.siteStatus === 'live') {
-      return (
-        <motion.a
-          key={project.name}
-          className={bannerClass}
-          href={project.siteUrl}
-          target="_blank"
-          rel="noreferrer"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewport}
-          transition={{ duration: 0.28, delay: index * 0.025 }}
-        >
-          {bannerContent}
-        </motion.a>
-      );
-    }
-
     return (
-      <motion.article
+      <motion.a
         key={project.name}
         className={bannerClass}
+        href={project.siteStatus === 'live' ? project.siteUrl : `#/projects/${project.slug}`}
+        target={project.siteStatus === 'live' ? '_blank' : undefined}
+        rel={project.siteStatus === 'live' ? 'noreferrer' : undefined}
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
         transition={{ duration: 0.28, delay: index * 0.025 }}
       >
         {bannerContent}
-      </motion.article>
+      </motion.a>
     );
   };
 
@@ -253,6 +98,9 @@ function App() {
         </div>
       </header>
 
+      {activeProject ? (
+        <ProjectDetail project={activeProject} />
+      ) : (
       <main id="top">
         <section className="hero">
           <motion.div
@@ -433,7 +281,71 @@ function App() {
           </motion.div>
         </section>
       </main>
+      )}
     </div>
+  );
+}
+
+function ProjectDetail({ project }: { project: Project }) {
+  return (
+    <main className="project-detail-page">
+      <section className={`project-detail-hero project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+        <div className="project-detail-kicker">
+          <a href="#projects">Back to portfolio</a>
+          <span>{project.siteStatus === 'live' ? 'Site live' : 'Information page'}</span>
+        </div>
+        <div className="project-detail-grid">
+          <div>
+            <p className="eyebrow">{project.layer}</p>
+            <h1>{project.name}</h1>
+            <p className="project-detail-category">{project.category}</p>
+            <p className="project-detail-thesis">{project.thesis}</p>
+            <div className="project-detail-actions">
+              {project.siteStatus === 'live' ? (
+                <a className="btn btn-primary" href={project.siteUrl} target="_blank" rel="noreferrer">
+                  Open project site
+                </a>
+              ) : (
+                <span className="btn btn-ghost project-detail-disabled">Dedicated site pending</span>
+              )}
+              <a className="btn btn-ghost" href="mailto:hello@grencape.xyz">
+                Contact Grencape
+              </a>
+            </div>
+          </div>
+          <aside className="project-detail-card">
+            <span>{project.stage}</span>
+            <strong>{project.signal}</strong>
+            <p>{project.role}</p>
+            <dl>
+              <div>
+                <dt>Reserved domain</dt>
+                <dd>{project.siteUrl.replace('https://', '')}</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>{project.siteStatus === 'live' ? 'Live site' : 'Information only'}</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section project-detail-section">
+        <div className="section-head">
+          <p className="eyebrow">PRODUCT FOCUS</p>
+          <h2>What this project organizes inside ERA1.</h2>
+        </div>
+        <div className="project-focus-grid">
+          {project.focus.map((item, index) => (
+            <article key={item}>
+              <span>0{index + 1}</span>
+              <h3>{item}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
 
