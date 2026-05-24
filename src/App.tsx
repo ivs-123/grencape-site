@@ -183,36 +183,6 @@ function App() {
           </motion.div>
         </section>
 
-        <section className="section section-roadmap">
-          <motion.div
-            className="section-head"
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.45 }}
-          >
-            <p className="eyebrow">ROADMAP SIGNAL</p>
-            <h2>From AI core to integrated concern execution.</h2>
-          </motion.div>
-          <div className="roadmap-grid">
-            <article>
-              <p>Phase 01</p>
-              <h3>Build the model and data nucleus</h3>
-              <span>AIS AI / Semanta AI / Gamma AI Hedge Fund</span>
-            </article>
-            <article>
-              <p>Phase 02</p>
-              <h3>Scale infrastructure and analytics fabric</h3>
-              <span>ERA Cloud / ERA DB / ERA Prism Studio - Data Science Studio</span>
-            </article>
-            <article>
-              <p>Phase 03</p>
-              <h3>Ship consumer and fintech surfaces</h3>
-              <span>SomeBox / One Browser / Quantum Messenger / Mind Music / ERA Pay / MoneyOne</span>
-            </article>
-          </div>
-        </section>
-
         <section className="section section-contact" id="contact">
           <motion.div
             className="contact-box"
