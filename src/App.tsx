@@ -30,42 +30,10 @@ function App() {
   }, []);
 
   const renderProjectBanner = (project: Project, index: number) => {
-    const bannerClass = [
-      'project-banner',
-      `project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
-    ].filter(Boolean).join(' ');
-
-    const bannerContent = (
-      <>
-        <span className="project-banner-orbit" aria-hidden="true" />
-        <span className="project-banner-topline">
-          <span>{project.stage}</span>
-          <span>{project.layer}</span>
-          <span className={`project-banner-status project-banner-status-${project.siteStatus}`}>
-            {project.siteStatus === 'live' ? 'Site live' : 'Info only'}
-          </span>
-        </span>
-        <span className="project-banner-main">
-          <span>
-            <strong>{project.name}</strong>
-            <em>{project.category}</em>
-          </span>
-          <span className={`project-banner-link ${project.siteStatus === 'pending' ? 'project-banner-link-disabled' : ''}`}>
-            {project.siteStatus === 'live' ? 'Open site' : 'View info'}
-          </span>
-        </span>
-        <span className="project-banner-role">{project.role}</span>
-        <span className="project-banner-footer">
-          <span>{project.signal}</span>
-          <span>{project.siteUrl.replace('https://', '')}</span>
-        </span>
-      </>
-    );
-
     return (
       <motion.a
         key={project.name}
-        className={bannerClass}
+        className="project-row-card"
         href={project.siteStatus === 'live' ? project.siteUrl : `#/projects/${project.slug}`}
         target={project.siteStatus === 'live' ? '_blank' : undefined}
         rel={project.siteStatus === 'live' ? 'noreferrer' : undefined}
@@ -74,7 +42,16 @@ function App() {
         viewport={viewport}
         transition={{ duration: 0.28, delay: index * 0.025 }}
       >
-        {bannerContent}
+        <span className="project-row-name">
+          <strong>{project.name}</strong>
+          <span>{project.role}</span>
+        </span>
+        <span className="project-row-meta">{project.layer}</span>
+        <span className={`project-row-status project-row-status-${project.siteStatus}`}>
+          {project.siteStatus === 'live' ? 'Live site' : 'Info only'}
+        </span>
+        <span className="project-row-domain">{project.siteUrl.replace('https://', '')}</span>
+        <span className="project-row-action">{project.siteStatus === 'live' ? 'Open' : 'View'}</span>
       </motion.a>
     );
   };
@@ -175,18 +152,18 @@ function App() {
             <div>
               <p className="eyebrow">ERA1 PORTFOLIO</p>
               <h2>
-                <span className="title-desktop">One concern. Twelve project banners ready to become standalone sites.</span>
+                <span className="title-desktop">One concern. Twelve project entries managed as an enterprise portfolio.</span>
                 <span className="title-mobile">
                   One concern.
                   <br />
-                  Twelve project banners.
+                  Twelve project entries.
                   <br />
-                  Standalone sites.
+                  Enterprise portfolio.
                 </span>
               </h2>
             </div>
             <p>
-              Each banner is structured as a brand entry point: clear role, strategic layer and a live
+              Each entry is structured as a controlled brand record: clear role, strategic layer and a live
               website transition only when the dedicated product site is ready.
             </p>
           </motion.div>
@@ -211,7 +188,14 @@ function App() {
             </span>
             <a href="mailto:hello@grencape.xyz">Request portfolio access</a>
           </motion.div>
-          <div className="project-banner-grid">
+          <div className="project-index" role="list" aria-label="ERA1 project index">
+            <div className="project-index-head" aria-hidden="true">
+              <span>Project</span>
+              <span>Layer</span>
+              <span>Status</span>
+              <span>Domain</span>
+              <span>Action</span>
+            </div>
             {projects.map(renderProjectBanner)}
           </div>
         </section>
@@ -289,7 +273,7 @@ function App() {
 function ProjectDetail({ project }: { project: Project }) {
   return (
     <main className="project-detail-page">
-      <section className={`project-detail-hero project-banner-${project.layer.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+      <section className="project-detail-hero">
         <div className="project-detail-kicker">
           <a href="#projects">Back to portfolio</a>
           <span>{project.siteStatus === 'live' ? 'Site live' : 'Information page'}</span>
