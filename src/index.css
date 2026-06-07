@@ -44,10 +44,7 @@ body,
 body {
   margin: 0;
   overflow-x: hidden;
-  background:
-    linear-gradient(90deg, rgba(20, 35, 27, 0.026) 1px, transparent 1px),
-    linear-gradient(180deg, #fffdf9 0%, #f8f5ef 54%, var(--paper) 100%);
-  background-size: 112px 100%, 100% 100%, 100% 100%;
+  background: #fbfaf6;
   color: var(--ink);
   font-family: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
   line-height: 1.55;
@@ -64,14 +61,7 @@ a {
 }
 
 .app-shell::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255, 253, 248, 0) 0%, rgba(255, 253, 248, 0.72) 68%, rgba(245, 241, 233, 0.94) 100%),
-    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.86), transparent 36rem);
-  z-index: -1;
+  content: none;
 }
 
 .topbar {
@@ -117,7 +107,7 @@ a {
 }
 
 .topnav a {
-  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+  transition: none;
 }
 
 .topnav a:hover {
@@ -133,7 +123,7 @@ a {
   border-radius: 999px;
   background: var(--green-deep);
   color: #fffdf8 !important;
-  box-shadow: 0 16px 32px rgba(10, 61, 43, 0.18);
+  box-shadow: none;
 }
 
 .nav-contact::after {
@@ -143,18 +133,18 @@ a {
 }
 
 .nav-contact:hover {
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .hero {
   width: min(1370px, 94vw);
-  min-height: min(92svh, 58rem);
+  min-height: min(86svh, 54rem);
   margin: 0 auto;
   padding-top: 7.4rem;
   padding-bottom: 4.2rem;
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(600px, 1.22fr);
-  gap: 1.8rem;
+  grid-template-columns: minmax(0, 0.95fr) minmax(28rem, 0.65fr);
+  gap: 5rem;
   align-items: center;
 }
 
@@ -243,17 +233,17 @@ a {
   border: 1px solid transparent;
   font-size: 0.94rem;
   font-weight: 700;
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  transition: none;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .btn-primary {
   background: var(--green-deep);
   color: #fffdf8;
-  box-shadow: 0 16px 34px rgba(10, 61, 43, 0.2);
+  box-shadow: none;
 }
 
 .btn-ghost {
@@ -262,70 +252,53 @@ a {
   color: var(--ink);
 }
 
-.hero-visual {
+.hero-panel {
   min-width: 0;
-  justify-self: end;
-  width: min(59rem, 100%);
-  position: relative;
-  transform: translateX(1.4rem);
+  align-self: center;
+  padding: 1.8rem 0 0;
+  border-top: 1px solid var(--green-deep);
 }
 
-.hero-visual::before {
-  content: '';
-  position: absolute;
-  inset: 8% 5% 5% 17%;
-  background: radial-gradient(circle, rgba(10, 61, 43, 0.2), transparent 64%);
-  filter: blur(40px);
-  opacity: 0.65;
+.hero-panel > p {
+  margin: 0;
+  color: var(--green-deep);
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
-.trade-visual {
-  position: relative;
-  width: 100%;
-  min-height: 34rem;
-  padding: 2rem;
+.hero-panel dl {
+  margin: 1.6rem 0 0;
   display: grid;
-  align-content: space-between;
-  overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(20, 35, 27, 0.07) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(20, 35, 27, 0.055) 1px, transparent 1px),
-    radial-gradient(circle at 82% 16%, rgba(170, 117, 56, 0.22), transparent 15rem),
-    linear-gradient(135deg, rgba(255, 253, 248, 0.92), rgba(241, 237, 226, 0.84));
-  background-size: 4.8rem 4.8rem, 4.8rem 4.8rem, 100% 100%, 100% 100%;
-  border: 1px solid rgba(20, 35, 27, 0.1);
-  filter: drop-shadow(0 34px 48px rgba(28, 39, 34, 0.18));
+  gap: 0;
 }
 
-.trade-visual::before,
-.trade-visual::after {
-  content: '';
-  position: absolute;
-  inset: auto -8% 17% 12%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(10, 61, 43, 0.42), rgba(170, 117, 56, 0.62), transparent);
-  transform: rotate(-12deg);
+.hero-panel div {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.trade-visual::after {
-  inset: 42% 4% auto -10%;
-  transform: rotate(9deg);
-  opacity: 0.72;
-}
-
-.trade-visual-head {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 0.45rem;
-}
-
-.trade-visual-head span {
+.hero-panel dt {
   color: var(--copper);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero-panel dd {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.trade-visual-head,
+.trade-visual,
+.trade-visual::before,
+.trade-visual::after,
+.trade-visual-head span {
+  display: none;
 }
 
 .trade-visual-head strong {
@@ -513,7 +486,7 @@ a {
   background: var(--tile-color, var(--green-deep));
   color: var(--tile-text, #fffdf8);
   overflow: hidden;
-  transition: transform 170ms ease, filter 170ms ease;
+  transition: none;
 }
 
 .project-tile:nth-child(1) {
@@ -582,7 +555,7 @@ a {
 }
 
 .project-tile:hover {
-  transform: translateY(-3px);
+  transform: none;
   filter: brightness(1.04);
 }
 
@@ -971,6 +944,7 @@ a {
 
 @media (max-width: 560px) {
   .hero-copy,
+  .hero-panel,
   .hero-visual,
   .trade-visual,
   .section-head,
@@ -981,6 +955,8 @@ a {
   }
 
   .hero-copy,
+  .hero-panel,
+  .hero-panel *,
   .section-head,
   .layer-row,
   .layer-row *,

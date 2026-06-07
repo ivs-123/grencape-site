@@ -1,10 +1,4 @@
-import { motion } from 'framer-motion';
 import { layers } from './data/projects';
-
-const viewport = {
-  once: true,
-  amount: 0.25
-};
 
 function App() {
   return (
@@ -27,11 +21,8 @@ function App() {
 
       <main id="top">
         <section className="hero">
-          <motion.div
-            className="hero-copy"
-            initial={false}
-          >
-            <p className="eyebrow">GRENCAPE PRESENTS</p>
+          <div className="hero-copy">
+            <p className="eyebrow">INTERNATIONAL COMMODITY TRADING</p>
             <h1>
               Grencape
               <span>International Commodity Trading Company</span>
@@ -45,53 +36,37 @@ function App() {
               <a href="#layers" className="btn btn-primary">Explore trading scope</a>
               <a href="mailto:hello@grencape.xyz" className="btn btn-ghost">Start a conversation</a>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="hero-visual"
-            initial={false}
-            aria-label="Grencape global trading architecture visual"
-          >
-            <div className="trade-visual" aria-hidden="true">
-              <div className="trade-visual-head">
-                <span>GRENCAPE TRADE CONTROL</span>
-                <strong>International commodity routes</strong>
+          <aside className="hero-panel" aria-label="Grencape trading focus">
+            <p>Trading Focus</p>
+            <dl>
+              <div>
+                <dt>Markets</dt>
+                <dd>Agricultural, energy and industrial commodity flows</dd>
               </div>
-              <div className="trade-visual-map">
-                <span className="trade-node trade-node-source">Source</span>
-                <span className="trade-node trade-node-port">Port</span>
-                <span className="trade-node trade-node-market">Market</span>
+              <div>
+                <dt>Execution</dt>
+                <dd>Sourcing, logistics, documentation and settlement coordination</dd>
               </div>
-              <div className="trade-visual-rows">
-                <span>Supply</span>
-                <span>Logistics</span>
-                <span>Documentation</span>
-                <span>Settlement</span>
+              <div>
+                <dt>Counterparties</dt>
+                <dd>Suppliers, buyers, logistics partners and strategic investors</dd>
               </div>
-            </div>
-          </motion.div>
+            </dl>
+          </aside>
         </section>
 
         <section className="section section-layers" id="layers">
-          <motion.div
-            className="section-head"
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.45 }}
-          >
+          <div className="section-head">
             <p className="eyebrow">GRENCAPE TRADING</p>
             <h2>Commodity flows structured for international markets.</h2>
-          </motion.div>
+          </div>
           <div className="layer-list">
             {layers.map((layer, index) => (
-              <motion.article
+              <article
                 key={layer.title}
                 className="layer-row"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={viewport}
-                transition={{ duration: 0.3, delay: index * 0.04 }}
               >
                 <p className="layer-index">0{index + 1}</p>
                 <div>
@@ -99,19 +74,13 @@ function App() {
                   <p>{layer.note}</p>
                 </div>
                 <p className="layer-projects">{layer.projects.join(' / ')}</p>
-              </motion.article>
+              </article>
             ))}
           </div>
         </section>
 
         <section className="section section-manifesto" id="manifesto">
-          <motion.div
-            className="manifesto-grid"
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.45 }}
-          >
+          <div className="manifesto-grid">
             <div>
               <p className="eyebrow">STRUCTURE</p>
               <h2>Grencape is focused on physical commodity trading across international markets.</h2>
@@ -121,22 +90,16 @@ function App() {
               <li>Execution covers logistics, documentation, pricing discipline and settlement coordination.</li>
               <li>The company is built for reliable cross-border commodity flows and long-term trade relationships.</li>
             </ul>
-          </motion.div>
+          </div>
         </section>
 
         <section className="section section-contact" id="contact">
-          <motion.div
-            className="contact-box"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.4 }}
-          >
+          <div className="contact-box">
             <p className="eyebrow">CONTACT</p>
             <h2>Trade with Grencape.</h2>
             <p>We are open to commodity suppliers, buyers, trading counterparties, logistics partners and strategic investors.</p>
             <a className="btn btn-primary" href="mailto:hello@grencape.xyz">hello@grencape.xyz</a>
-          </motion.div>
+          </div>
         </section>
       </main>
     </div>
