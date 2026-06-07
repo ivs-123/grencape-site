@@ -205,6 +205,7 @@ a {
   font-size: 1.45rem;
   font-weight: 600;
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .hero-kicker::after {
@@ -278,13 +279,120 @@ a {
   opacity: 0.65;
 }
 
-.hero-visual img {
+.trade-visual {
   position: relative;
-  display: block;
   width: 100%;
-  max-width: 100%;
-  height: auto;
+  min-height: 34rem;
+  padding: 2rem;
+  display: grid;
+  align-content: space-between;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(20, 35, 27, 0.07) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(20, 35, 27, 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 82% 16%, rgba(170, 117, 56, 0.22), transparent 15rem),
+    linear-gradient(135deg, rgba(255, 253, 248, 0.92), rgba(241, 237, 226, 0.84));
+  background-size: 4.8rem 4.8rem, 4.8rem 4.8rem, 100% 100%, 100% 100%;
+  border: 1px solid rgba(20, 35, 27, 0.1);
   filter: drop-shadow(0 34px 48px rgba(28, 39, 34, 0.18));
+}
+
+.trade-visual::before,
+.trade-visual::after {
+  content: '';
+  position: absolute;
+  inset: auto -8% 17% 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(10, 61, 43, 0.42), rgba(170, 117, 56, 0.62), transparent);
+  transform: rotate(-12deg);
+}
+
+.trade-visual::after {
+  inset: 42% 4% auto -10%;
+  transform: rotate(9deg);
+  opacity: 0.72;
+}
+
+.trade-visual-head {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.trade-visual-head span {
+  color: var(--copper);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.trade-visual-head strong {
+  max-width: 28rem;
+  color: var(--green-deep);
+  font-size: 2.8rem;
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+  overflow-wrap: anywhere;
+}
+
+.trade-visual-map {
+  position: relative;
+  z-index: 1;
+  min-height: 15rem;
+}
+
+.trade-node {
+  position: absolute;
+  width: 7.2rem;
+  height: 7.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.76);
+  color: var(--green-deep);
+  border: 1px solid rgba(20, 35, 27, 0.12);
+  box-shadow: 0 18px 36px rgba(28, 39, 34, 0.08);
+  font-weight: 800;
+}
+
+.trade-node-source {
+  left: 4%;
+  top: 18%;
+}
+
+.trade-node-port {
+  left: 42%;
+  top: 45%;
+  background: var(--green-deep);
+  color: #fffdf8;
+}
+
+.trade-node-market {
+  right: 4%;
+  top: 4%;
+}
+
+.trade-visual-rows {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(20, 35, 27, 0.12);
+}
+
+.trade-visual-rows span {
+  min-height: 4rem;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid rgba(20, 35, 27, 0.1);
+  color: #50625a;
+  font-weight: 700;
+}
+
+.trade-visual-rows span:last-child {
+  border-right: 0;
 }
 
 .section {
@@ -313,6 +421,7 @@ a {
   font-weight: 600;
   line-height: 1.02;
   letter-spacing: -0.055em;
+  overflow-wrap: anywhere;
 }
 
 .title-mobile {
@@ -456,6 +565,10 @@ a {
 
 .project-tile:nth-child(12) {
   --tile-color: #1d4257;
+}
+
+.project-tile:nth-child(13) {
+  --tile-color: #7b2f47;
 }
 
 .project-tile span {
@@ -792,6 +905,21 @@ a {
     margin-top: 2.1rem;
   }
 
+  .trade-visual {
+    min-height: 28rem;
+    padding: 1.35rem;
+  }
+
+  .trade-visual-head strong {
+    max-width: 21rem;
+    font-size: 2.25rem;
+  }
+
+  .trade-node {
+    width: 6rem;
+    height: 6rem;
+  }
+
   .hero-lead {
     max-width: 21.5rem;
     word-break: normal;
@@ -807,7 +935,8 @@ a {
   }
 
   .hero-kicker {
-    font-size: 1.55rem;
+    max-width: 21rem;
+    font-size: 1.35rem;
   }
 
   .section {
@@ -815,7 +944,7 @@ a {
   }
 
   .section h2 {
-    font-size: 3rem;
+    font-size: 2.75rem;
   }
 
   .layer-row,
@@ -841,6 +970,28 @@ a {
 }
 
 @media (max-width: 560px) {
+  .hero-copy,
+  .hero-visual,
+  .trade-visual,
+  .section-head,
+  .layer-list,
+  .manifesto-grid {
+    width: min(20rem, calc(100vw - 1.5rem));
+    max-width: min(20rem, calc(100vw - 1.5rem));
+  }
+
+  .hero-copy,
+  .section-head,
+  .layer-row,
+  .layer-row *,
+  .manifesto-grid,
+  .manifesto-grid *,
+  .trade-visual,
+  .trade-visual * {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
   .hero h1 {
     font-size: 4.1rem;
   }
@@ -860,7 +1011,14 @@ a {
   }
 
   .section h2 {
-    font-size: 2.55rem;
+    max-width: 20rem;
+    font-size: 1.72rem;
+    line-height: 1.08;
+  }
+
+  .hero-kicker {
+    max-width: 20rem;
+    font-size: 1.22rem;
   }
 
   .project-showcase-head h2 {
@@ -879,6 +1037,66 @@ a {
 
   .project-showcase-head p:last-child {
     max-width: 21rem;
+  }
+
+  .trade-visual {
+    justify-self: start;
+    min-height: 24rem;
+  }
+
+  .trade-visual-head strong {
+    max-width: 12.5rem;
+    font-size: 1.42rem;
+  }
+
+  .trade-node {
+    width: 4.75rem;
+    height: 4.75rem;
+    font-size: 0.86rem;
+  }
+
+  .trade-node-source {
+    left: 0.65rem;
+  }
+
+  .trade-node-port {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .trade-node-market {
+    right: 1.25rem;
+  }
+
+  .layer-row {
+    display: block;
+    width: 100%;
+  }
+
+  .layer-row p,
+  .layer-projects {
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .trade-visual-rows {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trade-visual-rows span {
+    min-height: 3rem;
+    border-bottom: 1px solid rgba(20, 35, 27, 0.1);
+    font-size: 0.82rem;
+  }
+
+  .trade-visual-rows span:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .trade-visual-rows span:nth-last-child(-n + 2) {
+    border-bottom: 0;
   }
 
   .project-tile-grid {
